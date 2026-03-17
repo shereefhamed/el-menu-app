@@ -36,10 +36,15 @@ class Restaurant extends Model
         return $this->belongsTo(RestaurantType::class);
     }
 
-    public function cities()
+    // public function cities()
+    // {
+    //     return $this->belongsToMany(City::class, 'restaurnt_city')
+    //     ->withPivot('phone', 'address');
+    // }
+
+    public function branches()
     {
-        return $this->belongsToMany(City::class, 'restaurnt_city')
-        ->withPivot('phone', 'address');
+        return $this->hasMany(Branche::class);
     }
 
     public function getRouteKeyName()

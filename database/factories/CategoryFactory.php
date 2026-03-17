@@ -16,8 +16,11 @@ class CategoryFactory extends Factory
      */
     public function definition(): array
     {
+        $fakerAr = \Faker\Factory::create('ar_SA');
         return [
             'name_en' => fake()->word(),
+            'name_ar' => $fakerAr->realText(10),
+            //'name_ar' => fake()->randomElement(['بيتزا', 'برجر', 'مكرونة', 'مشروبات']),
         ];
     }
 }

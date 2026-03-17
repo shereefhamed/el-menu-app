@@ -9,8 +9,14 @@ class Attribute extends Model
 {
     use HasFactory;
 
-    public function variations()
+    // public function variations()
+    // {
+    //     return $this->hasMany(Variation::class);
+    // }
+
+    public function menuItems()
     {
-        return $this->hasMany(Variation::class);
+        return $this->belongsToMany(MenuItem::class, 'menu_item_attribute')
+            ->withPivot('price');
     }
 }

@@ -16,24 +16,13 @@ class VariationSeeder extends Seeder
      */
     public function run(): void
     {
+
         $menuItems = MenuItem::all()->random(10);
+
         $menuItems->each(function (MenuItem $menuItem) {
-
-            // $menuItem->variations()->createMany([
-            //     [
-            //         'attribute_id' => Attribute::all()->random()->id,
-            //     ],
-            //     [
-            //         'attribute_id' => Attribute::all()->random()->id,
-            //     ],
-            //     [
-            //         'attribute_id' => Attribute::all()->random()->id,
-            //     ]
-            // ]);
-
-            Variation::factory()->count(3)->create([
-                'attribute_id' => Attribute::all()->random()->id,
-                'menu_item_id' => $menuItem->id,
+            $attributes = Attribute::inRandomOrder()->take(3);
+            $menuItem->attribures()->attach($attributes->pluck('id'), [
+                'price' => fake()->randomFloat(nbMaxDecimals: 2, max: 200),
             ]);
         });
     }

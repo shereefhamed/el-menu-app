@@ -9,9 +9,14 @@ class City extends Model
 {
     use HasFactory;
 
-    public function restaurants()
+    // public function restaurants()
+    // {
+    //     return $this->belongsToMany(related: Restaurant::class, table: 'restaurnt_city')
+    //     ->withPivot('phone', 'address');
+    // }
+
+    public function branches()
     {
-        return $this->belongsToMany(related: Restaurant::class, table: 'restaurnt_city')
-        ->withPivot('phone', 'address');
+        return $this->hasMany(Branche::class);
     }
 }

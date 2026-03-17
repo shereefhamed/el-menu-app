@@ -10,22 +10,20 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('variations', function (Blueprint $table) {
+        Schema::create('menu_item_attribute', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('menu_item_id');
-            $table->unsignedBigInteger('attribute_id')->nullable();
+            $table->unsignedBigInteger('attribute_id');
             $table->double('price');
             $table->foreign('menu_item_id')
                 ->references('id')
                 ->on('menu_items')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
             $table->foreign('attribute_id')
                 ->references('id')
                 ->on('attributes')
-                ->onDelete('set null')
-                ->onUpdate('set null');
-            $table->timestamps();
+                ->onDelete('cascade');
+            // $table->timestamps();
         });
     }
 
@@ -34,6 +32,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('variations');
+        Schema::dropIfExists('menu_item_attribute');
     }
 };

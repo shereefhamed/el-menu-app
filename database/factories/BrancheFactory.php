@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Variation>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Branche>
  */
-class VariationFactory extends Factory
+class BrancheFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,8 @@ class VariationFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => fake()->randomFloat(min: 50, max: 500),
+            'address' => fake()->address(),
+            'phone' => fake()->phoneNumber(),
         ];
     }
 }

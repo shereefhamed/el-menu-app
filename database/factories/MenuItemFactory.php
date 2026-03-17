@@ -16,8 +16,10 @@ class MenuItemFactory extends Factory
      */
     public function definition(): array
     {
+        $fakerAr = \Faker\Factory::create('ar_SA');
         return [
            'name_en' => fake()->words(3, true),
+           'name_ar' => fake()->randomElement(['بيتزا', 'برجر', 'مكرونة', 'مشروبات']),
            'description_en' => fake()->sentences(3, true),
            'price' => fake()->randomFloat(),
            
