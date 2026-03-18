@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -36,12 +37,6 @@ class Restaurant extends Model
         return $this->belongsTo(RestaurantType::class);
     }
 
-    // public function cities()
-    // {
-    //     return $this->belongsToMany(City::class, 'restaurnt_city')
-    //     ->withPivot('phone', 'address');
-    // }
-
     public function branches()
     {
         return $this->hasMany(Branche::class);
@@ -50,6 +45,14 @@ class Restaurant extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeSubscripedRestaturant(Builder $builder, string $slug)
+    {
+
+        $builder->with('categories.menuItems')
+            ->whereRelation('user.subscription', 'end_at', '>=', now())
+            ->where('slug', $slug);
     }
 
     protected static function booted()

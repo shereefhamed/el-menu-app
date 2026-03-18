@@ -1,7 +1,20 @@
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
 @import 'bootstrap/dist/css/bootstrap.min.css';
+
+:root {
+    --primary-color: rgb(25, 135, 84);
+}
+
+body.ar {
+    font-family: "Cairo", sans-serif;
+}
+
+.desktop-only {
+    display: none;
+}
 
 .categories.navbar.sticky-top {
     top: 56px !important;
@@ -40,11 +53,108 @@
     background-color: rgb(25, 135, 84);
 }
 
-.card a{
+.card a {
     color: #212529;
     text-decoration: none;
 }
 
-img{
+img {
     width: 100%;
+}
+
+.restaurant-card .card-text {
+    /* max-height: 100px; */
+}
+
+.restaurant-card .card-title {
+    /* max-height: 100px; */
+}
+
+.bottom-navbar {
+    position: fixed;
+    z-index: 10000;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.bottom-navbar-items {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--primary-color);
+    padding: .75rem 0;
+}
+
+.bottom-navbar-item {
+    flex-basis: 25%;
+    max-width: 25%;
+    text-align: center;
+}
+
+.bottom-navbar-item a {
+    color: white;
+}
+
+.about .social-media {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+.about .social-media .social-media-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    text-align: center;
+    transition: all 500ms;
+}
+
+.about .social-media .social-media-icon:hover {
+    background-color: white;
+
+}
+
+.about .social-media .social-media-icon:hover .fa-brands {
+    color: var(--primary-color);
+
+}
+
+.about .social-media .social-media-icon a {
+    color: white;
+    line-height: 2rem;
+    font-size: 1rem;
+}
+
+footer {
+    padding: 2rem;
+    text-align: center;
+}
+
+#btn-back-to-top {
+    position: fixed;
+    bottom: 3.5rem;
+    right: 1rem;
+    display: none;
+    z-index: 99;
+}
+
+@media (min-width: 576px) {
+    .bottom-navbar {
+        display: none;
+    }
+
+    .desktop-only {
+        display: block;
+    }
+
+    #btn-back-to-top {
+ 
+        bottom: 1rem;
+        right: 1rem;
+    
+    }
 }

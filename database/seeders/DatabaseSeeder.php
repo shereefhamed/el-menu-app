@@ -33,8 +33,11 @@ class DatabaseSeeder extends Seeder
             VariationSeeder::class,
             SocialMediaSeeder::class,
             RestaurantSocialMediaSeeder::class,
+            CountrySeeder::class,
             CitySeeder::class,
             BrancheSeeder::class,
+            AddonSeeder::class,
+            MenuItemAddonSeeder::class,
             //RestaurantCitySeeder::class,
         ]);
     }

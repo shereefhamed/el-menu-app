@@ -38,9 +38,18 @@ class RestaurantMenuItemController extends Controller
      */
     public function show(string $locale, Restaurant $restaurant, MenuItem $menuItem)
     {
+        abort_if($restaurant->user->subscription->end_at <= now(), 404);
+
+        $related = MenuItem::where('category_id', $menuItem->category_id)
+            ->where('id', '<>', $menuItem->id)
+            ->get();
         return view(
             'front.menu-items.show',
-            ['menuItem' => $menuItem ,'restaurant' => $restaurant],
+            [
+                'menuItem' => $menuItem,
+                'restaurant' => $restaurant,
+                'related' => $related,
+            ],
         );
     }
 

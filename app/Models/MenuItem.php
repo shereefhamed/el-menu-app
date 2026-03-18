@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute as ModelAttribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class MenuItem extends Model
 {
@@ -20,21 +22,28 @@ class MenuItem extends Model
         return $this->belongsTo(Restaurant::class);
     }
 
-    // public function variations()
-    // {
-    //     return $this->hasMany(Variation::class);
-    // }
-
-    public function attribures()
+    public function attributes()
     {
         return $this->belongsToMany(Attribute::class, 'menu_item_attribute')
             ->withPivot('price');
+    }
+
+    public function addons()
+    {
+        return $this->belongsToMany(Addon::class, 'menu_item_addon');
     }
 
     protected function name(): ModelAttribute
     {
         return ModelAttribute::make(
             get: fn() => $this->{'name_' . app()->getLocale()}
+        );
+    }
+
+    protected function description(): ModelAttribute
+    {
+        return ModelAttribute::make(
+            get: fn() => $this->{'description_' . app()->getLocale()}
         );
     }
 
@@ -49,5 +58,22 @@ class MenuItem extends Model
             return true;
         }
         return false;
+    }
+
+    // public function scopeRelated(Builder $quiry, string $categoryId)
+    // {
+
+    // }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    protected static function booted()
+    {
+        static::creating(function(MenuItem $menuItem){
+            $menuItem->slug = Str::slug($menuItem->name_en);
+        });
     }
 }

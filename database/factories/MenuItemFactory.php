@@ -21,7 +21,7 @@ class MenuItemFactory extends Factory
            'name_en' => fake()->words(3, true),
            'name_ar' => fake()->randomElement(['بيتزا', 'برجر', 'مكرونة', 'مشروبات']),
            'description_en' => fake()->sentences(3, true),
-           'price' => fake()->randomFloat(),
+           'price' => fake()->randomFloat(nbMaxDecimals:2, min:1, max:200),
            
         ];
     }

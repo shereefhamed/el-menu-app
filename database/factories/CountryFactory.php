@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\City>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Country>
  */
-class CityFactory extends Factory
+class CountryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +18,8 @@ class CityFactory extends Factory
     {
          $fakerAr = \Faker\Factory::create('ar_SA');
         return [
-            'name_en' => fake()->city(),
-            'name_ar' => $fakerAr->city(),
-
+            'name_en' => fake()->country(),
+            'name_ar' => $fakerAr->country(),
         ];
     }
 }
