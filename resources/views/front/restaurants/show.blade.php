@@ -18,7 +18,7 @@
                 <h4>{{ $category->name}}</h4>
                 @foreach ($category->menuItems as $menuItem)
                     <div class="col-md-3 col-6">
-                        @include('front.restaurants.partials.restaurant-card')
+                        @include('front.menu-items.partials.menu-item-card')
                     </div>
                 @endforeach
             </div>

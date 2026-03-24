@@ -16,8 +16,11 @@ class AddonFactory extends Factory
      */
     public function definition(): array
     {
+        $fakerAr = \Faker\Factory::create('ar_SA');
         return [
-            'name_en' => fake()->words(3, true)
+            'name_en' => fake()->words(3, true),
+            'name_ar' => $fakerAr->words(3, true),
+            'price' => fake()->randomFloat(nbMaxDecimals:2, min: 1, max:50),
         ];
     }
 }

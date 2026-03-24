@@ -3,5 +3,11 @@
     "Laracasts":"لاراكاست",
     "Laravel News":"أخبار لارافيل",
     "Vibrant Ecosystem":"نظام بيئي نابض بالحياة",
-    "Address":"العنوان"
+    "Address":"العنوان",
+    "Add To Cart":"إضافة الى السلة",
+    "Attributes":"الصفات",
+    "Select item attribute":"اختار صفة العنصر",
+    "Category:":"الصنف:",
+    "Share:":"مشاركة:",
+    "Add To Favorites":"إضافة الى المفضلة"
 }

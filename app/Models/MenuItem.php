@@ -60,10 +60,6 @@ class MenuItem extends Model
         return false;
     }
 
-    // public function scopeRelated(Builder $quiry, string $categoryId)
-    // {
-
-    // }
 
     public function getRouteKeyName()
     {
