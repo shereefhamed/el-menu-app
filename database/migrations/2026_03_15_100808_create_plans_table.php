@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name_en');
             $table->string('description_en');
-            $table->string('name_ar')->nullable();
-            $table->string('description_ar')->nullable();
+            $table->string('name_ar');
+            $table->string('description_ar');
             $table->double('amount');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

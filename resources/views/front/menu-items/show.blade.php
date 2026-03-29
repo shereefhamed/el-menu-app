@@ -17,7 +17,7 @@
                         <li><a href="#"><i class="fa-regular fa-heart"></i> {{ __('Add To Favorites') }}</a></li>
                         
                     </ul>
-                    @if ($menuItem->attributes()->exists())
+                    @if ($menuItem->attributes->isNotEmpty())
                         <div class="mb-3">
                             <label for="menu-item-attributes" class="form-label">{{ __('Attributes') }}</label>
                             <select class="form-select" aria-label="Default select example" id="menu-item-attributes">
@@ -29,7 +29,7 @@
                             </select>
                         </div>
                     @endif
-                    @if ($menuItem->addons()->exists())
+                    @if ($menuItem->addons->isNotEmpty())
                         <div class="menu-item-addons mb-3">
                             <h4>Addons</h4>
                             @foreach ($menuItem->addons as $addon)
@@ -56,7 +56,7 @@
             </div>
         </div>
         <script>
-            let price = {{$menuItem->attributes()->exists() ? 0 : $menuItem->price}};
+            // let price = {{$menuItem->attributes->isNotEmpty() ? 0 : $menuItem->price}};
 
             const menuItemAttributsOptions = document.getElementById('menu-item-attributes');
             const menuItemPrice = document.getElementById('menu-item-price');
@@ -134,7 +134,7 @@
             // }
 
             // 1. Initial configuration
-            const basePriceFromModel = {{ $menuItem->attributes()->exists() ? 0 : $menuItem->price }};
+            const basePriceFromModel = {{ $menuItem->attributes->isNotEmpty() ? 0 : $menuItem->price }};
 
 
             function updateTotalPrice() {

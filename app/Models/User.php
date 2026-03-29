@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Restaurant::class);
     }
+
+    public function isAdmin()
+    {
+        return $this->role->name === 'admin';
+    }
 }

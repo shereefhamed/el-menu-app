@@ -177,6 +177,25 @@ footer {
     margin: 0;
 }
 
+.singin-signup{
+    width: 100%;
+    height: 100vh;
+    background-color: #fafafa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.singin-signup-card{
+    max-width: 30rem;
+    width: 100%;
+    padding: 1rem;
+}
+
+.main-navbar{
+    margin-inline-end: auto;
+}
+
 @media (min-width: 576px) {
     .bottom-navbar {
         display: none;

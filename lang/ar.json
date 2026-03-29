@@ -9,5 +9,21 @@
     "Select item attribute":"اختار صفة العنصر",
     "Category:":"الصنف:",
     "Share:":"مشاركة:",
-    "Add To Favorites":"إضافة الى المفضلة"
+    "Add To Favorites":"إضافة الى المفضلة",
+     "Welcome back":"مرحبًا بعودتك",
+    "Please sign in":"يرجى تسجيل الدخول",
+    "Email":"البريد الالكترونى",
+    "Password":"كلمة المرور",
+    "Remember me":"تذكرنى",
+    "Login":"دخول",
+    "Register":"تسجيل",
+    "Don't have an account?":"ليس لديك حساب؟",
+    "Get started":"إبدأ الآن",
+    "Create your account to get started":"أنشئ حسابك للبدء",
+    "Name":"الاسم",
+    "Confirm Password":"تأكيد كلمة المرور",
+    "Have an account?":"هل لديك حساب؟",
+    "The email field is required.":"حقل البريد الإلكتروني مطلوب.",
+    "The password field is required.":"حقل كلمة المرور مطلوب.",
+    "Logout":"خروج"
 }

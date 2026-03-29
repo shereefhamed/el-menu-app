@@ -17,6 +17,7 @@ class PlanSeeder extends Seeder
         foreach ($plans as $plan) {
             Plan::factory()->create([
                 'name_en' => $plan,
+                'name_ar' => $plan,
             ]);
         }
 

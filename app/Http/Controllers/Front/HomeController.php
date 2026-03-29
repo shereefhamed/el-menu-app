@@ -9,6 +9,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('welcome');
+        return view(
+            'front.home.index',
+            ['nav' => true]
+        );
     }
 }

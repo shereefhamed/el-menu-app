@@ -46,7 +46,7 @@ class RestaurantController extends Controller
             ->first();
 
         abort_if(!$restaurant, 404);
-
+        
         return view(
             'front.restaurants.show',
             ['restaurant' => $restaurant]

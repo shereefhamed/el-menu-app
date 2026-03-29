@@ -9,5 +9,21 @@
     "Select item attribute":"Select item attribute",
     "Category:":"Category:",
     "Share:":"Share:",
-    "Add To Favorites":"Add To Favorites"
+    "Add To Favorites":"Add To Favorites",
+    "Welcome back":"Welcome back",
+    "Please sign in":"Please sign in",
+    "Email":"Email",
+    "Password":"Password",
+    "Remember me":"Remember me",
+    "Login":"Login",
+    "Register":"Register",
+    "Don't have an account?":"Don't have an account?",
+    "Get started":"Get started",
+    "Create your account to get started":"Create your account to get started",
+    "Name":"Name",
+    "Confirm Password":"Confirm Password",
+    "Have an account?":"Have an account?",
+    "The email field is required.":"The email field is required.",
+    "The password field is required.":"The password field is required.",
+    "Logout":"Logout"
 }

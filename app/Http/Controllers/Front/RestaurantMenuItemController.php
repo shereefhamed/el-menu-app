@@ -43,6 +43,7 @@ class RestaurantMenuItemController extends Controller
         $related = MenuItem::where('category_id', $menuItem->category_id)
             ->where('id', '<>', $menuItem->id)
             ->get();
+
         return view(
             'front.menu-items.show',
             [
@@ -51,6 +52,7 @@ class RestaurantMenuItemController extends Controller
                 'related' => $related,
             ],
         );
+
     }
 
     /**
