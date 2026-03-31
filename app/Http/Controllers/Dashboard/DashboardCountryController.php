@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CountryRequest;
 use App\Models\Country;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DashboardCountryController extends Controller
 {
@@ -74,9 +75,12 @@ class DashboardCountryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(CountryRequest $request, Country $country)
+    public function update(Request $request, Country $country)
     {
-        $data = $request->validated();
+        $data = $request->validate([
+            'name_en' => ['required', 'max:255', 'min:3', Rule::unique('countries')->ignore($country->id)],
+            'name_ar' => ['required', 'max:255', 'min:3', Rule::unique('countries')->ignore($country->id)],
+        ]);
         $country->fill($data);
         $country->save();
         return redirect()->route('dashboard.countries.index')

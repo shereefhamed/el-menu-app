@@ -18,6 +18,7 @@ class RestaurantTypeFactory extends Factory
     {
         return [
             'name_en' => fake()->words(2, true),
+            'name_ar' => fake()->words(2, true),
         ];
     }
 }

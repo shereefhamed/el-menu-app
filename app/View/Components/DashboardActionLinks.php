@@ -15,10 +15,10 @@ class DashboardActionLinks extends Component
     public function __construct(
         public Model $model,
         public string $editRoute,
-        public string $deleteRoute,
-        public string $forceDeleteRoute,
-        public string $restoreRoute,
-        public string|null $viewRoute = null,
+        public ?string $restoreRoute = null,
+        public ?string $deleteRoute = null,
+        public ?string $forceDeleteRoute = null,
+        public ?string $viewRoute = null,
     ) {
         //
     }

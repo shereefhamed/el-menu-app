@@ -35,8 +35,6 @@
                             <p>Countries</p>
                         </a>
                     </li>
-                @endcan
-                @can('isAdmin')
                     <li class="nav-item">
                         <a href="{{ route('dashboard.cities.index') }}"
                             class="nav-link {{ request()->routeIs('dashboard.cities.index') ? 'active' : '' }}">
@@ -44,8 +42,6 @@
                             <p>Cities</p>
                         </a>
                     </li>
-                @endcan
-                @can('isAdmin')
                     <li class="nav-item">
                         <a href="{{ route('dashboard.plans.index') }}"
                             class="nav-link {{ request()->routeIs('dashboard.plans.index') ? 'active' : '' }}">
@@ -53,8 +49,6 @@
                             <p>Plans</p>
                         </a>
                     </li>
-                @endcan
-                @can('isAdmin')
                     <li class="nav-item">
                         <a href="{{ route('dashboard.payments.index') }}"
                             class="nav-link {{ request()->routeIs('dashboard.payments.index') ? 'active' : '' }}">
@@ -62,13 +56,32 @@
                             <p>Payments</p>
                         </a>
                     </li>
-                @endcan
-                @can('isAdmin')
                     <li class="nav-item">
                         <a href="{{ route('dashboard.users.index') }}"
                             class="nav-link {{ request()->routeIs('dashboard.users.index') ? 'active' : '' }}">
                             <i class="nav-icon bi-people-fill"></i>
                             <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.attributes.index') }}"
+                            class="nav-link {{ request()->routeIs('dashboard.attributes.index') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-tags-fill"></i>
+                            <p>Attributes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.restaurant-types.index') }}"
+                            class="nav-link {{ request()->routeIs('dashboard.restaurant-types.index') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-fork-knife"></i>
+                            <p>Restarant types</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.social-media.index') }}"
+                            class="nav-link {{ request()->routeIs('dashboard.social-media.index') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-wechat"></i>
+                            <p>Social Media</p>
                         </a>
                     </li>
                 @endcan

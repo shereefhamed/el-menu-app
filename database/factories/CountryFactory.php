@@ -16,7 +16,7 @@ class CountryFactory extends Factory
      */
     public function definition(): array
     {
-         $fakerAr = \Faker\Factory::create('ar_SA');
+         $fakerAr = \Faker\Factory::create('ar_EG');
         return [
             'name_en' => fake()->country(),
             'name_ar' => $fakerAr->country(),

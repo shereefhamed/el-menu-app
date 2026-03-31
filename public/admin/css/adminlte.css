@@ -18192,3 +18192,15 @@ a {
   gap: 0.5rem;
   align-items: center;
 }
+
+.dashboard-fitler {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-fitler form {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}

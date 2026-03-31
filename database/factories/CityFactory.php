@@ -16,7 +16,7 @@ class CityFactory extends Factory
      */
     public function definition(): array
     {
-         $fakerAr = \Faker\Factory::create('ar_SA');
+         $fakerAr = \Faker\Factory::create('ar_EG');
         return [
             'name_en' => fake()->city(),
             'name_ar' => $fakerAr->city(),

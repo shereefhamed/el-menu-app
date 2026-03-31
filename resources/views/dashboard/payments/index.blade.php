@@ -37,8 +37,7 @@
                         <tr class="align-middle">
                             <td>{{ $payment->transaction_id }}</td>
                             <td>
-                                {{ $payment->user->name }}
-
+                                {{ $payment->user?->name }}
                             </td>
                             <td>{{ $payment->plan->name }}</td>
                             <td>{{ $payment->amount }}</td>

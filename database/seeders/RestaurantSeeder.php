@@ -16,7 +16,7 @@ class RestaurantSeeder extends Seeder
     public function run(): void
     {
         $owners = User::whereHas(
-            'role',
+            'roles',
             function($query){
                 $query->where('name', 'owner');
             }

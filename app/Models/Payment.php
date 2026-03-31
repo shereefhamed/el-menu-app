@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Payment extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     public function plan()
     {
@@ -29,6 +30,6 @@ class Payment extends Model
         } else if ($from && $to) {
             $query->with('plan', 'user')->whereBetween('created_at', [$from, $to])->latest();
         }
-
+        $query->withTrashed();
     }
 }

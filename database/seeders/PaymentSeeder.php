@@ -15,7 +15,7 @@ class PaymentSeeder extends Seeder
      */
     public function run(): void
     {
-        $owners = User::whereHas('role', function ($query) {
+        $owners = User::whereHas('roles', function ($query) {
             $query->where('name', 'owner');
         })->get();
         $plans = Plan::all();

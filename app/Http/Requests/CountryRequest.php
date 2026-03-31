@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Country;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CountryRequest extends FormRequest
@@ -22,8 +23,9 @@ class CountryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name_en' => 'required|min:3',
-            'name_ar' => 'required|min:3',
+            'name_en' => ['required', 'max:255', 'min:3', 'unique:' . Country::class . ',name_en'],
+            'name_ar' => ['required', 'max:255', 'min:3', 'unique:' . Country::class . ',name_ar'],
+
         ];
     }
 }

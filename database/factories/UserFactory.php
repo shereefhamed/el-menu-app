@@ -48,16 +48,16 @@ class UserFactory extends Factory
         $adminRole = Role::where('name', 'admin')->first();
         return $this->state(fn(array $attributes) => [
             'email' => 'admin@test.com',
-            'role_id' => $adminRole->id,
+            // 'role_id' => $adminRole->id,
         ]);
     }
 
-    public function ownerUser()
-    {
-        $ownerRole = Role::where('name', 'owner')->first();
-        return $this->state(fn(array $attributes) => [
-            'role_id' => $ownerRole->id,
-        ]);
-    }
+    // public function ownerUser()
+    // {
+    //     $ownerRole = Role::where('name', 'owner')->first();
+    //     return $this->state(fn(array $attributes) => [
+    //         'role_id' => $ownerRole->id,
+    //     ]);
+    // }
 
 }

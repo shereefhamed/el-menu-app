@@ -20,25 +20,27 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([
-            RoleSeeder::class,
+            //RoleSeeder::class,
             UserSeeder::class,
+            UserRoleSeeder::class,
             PlanSeeder::class,
             PaymentSeeder::class,
             SubscriptionSeeder::class,
-            RestaurantTypeSeeder::class,
+            //RestaurantTypeSeeder::class,
             RestaurantSeeder::class,
             CategorySeeder::class,
             MenuItemSeeder::class,
-            AttributeSeeder::class,
+            //AttributeSeeder::class,
             VariationSeeder::class,
-            SocialMediaSeeder::class,
+            //SocialMediaSeeder::class,
             RestaurantSocialMediaSeeder::class,
-            CountrySeeder::class,
-            CitySeeder::class,
+            //CountrySeeder::class,
+            //CitySeeder::class,
             BrancheSeeder::class,
             AddonSeeder::class,
             MenuItemAddonSeeder::class,
             //RestaurantCitySeeder::class,
+            
         ]);
     }
 }

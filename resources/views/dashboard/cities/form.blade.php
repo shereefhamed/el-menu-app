@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="english-name" data-bs-toggle="tab"
                                 data-bs-target="#english-name-pane" type="button" role="tab"
@@ -47,7 +47,34 @@
                                 @enderror
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+
+                    <x-dashboard-languages-tab>
+                        <x-slot:englishContent>
+                            <div>
+                                <label for="name-arabic" class="form-label">Name</label>
+                                <input type="text"
+                                    class="form-control {{ $errors->has('name_en') ? 'is-invalid' : '' }}"
+                                    id="name-arabic" name="name_en"
+                                    value="{{ old('name_en', optional($city ?? null)->name_en) }}">
+                                @error('name_en')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </x-slot:englishConetnt>
+                        <x-slot:arabicContent>
+                             <div>
+                                <label for="name-arabic" class="form-label">Name</label>
+                                <input type="text"
+                                    class="form-control {{ $errors->has('name_en') ? 'is-invalid' : '' }}"
+                                    id="name-arabic" name="name_ar"
+                                    value="{{ old('name_ar', optional($city ?? null)->name_ar) }}">
+                                @error('name_ar')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </x-slot:arabicContent>
+                    </x-dashboard-languages-tab>
                 </div>
             </div>
         </div>
