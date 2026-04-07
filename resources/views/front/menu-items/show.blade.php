@@ -24,7 +24,7 @@
                                 <option selected>{{ __('Select item attribute') }}</option>
                                 @foreach ($menuItem->attributes as $attribute)
                                     <option value="{{ $attribute->pivot->price}}">{{ $attribute->name }}
-                                        EGP{{ $attribute->pivot->price }}</option>
+                                        {{ $restaurant->currency->symbol }}{{ $attribute->pivot->price }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -36,7 +36,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input addon" type="checkbox" value="{{ $addon->price }}">
                                     <label class="form-check-label" for="addon">
-                                        {{ $addon->name}} EGP{{ $addon->price }}
+                                        {{ $addon->name}} {{ $restaurant->currency->symbol }}{{ $addon->price }}
                                     </label>
                                 </div>
                             @endforeach
@@ -159,7 +159,7 @@
                 const finalTotal = (selectedBase + addonsTotal) * qty;
 
                 // E. Update UI
-                menuItemPrice.innerHTML = 'EGP ' + finalTotal.toFixed(2);
+                menuItemPrice.innerHTML = '{{ $restaurant->currency->symbol }} ' + finalTotal.toFixed(2);
 
                 if (hiddenPriceInput) {
                     hiddenPriceInput.value = finalTotal.toFixed(2);

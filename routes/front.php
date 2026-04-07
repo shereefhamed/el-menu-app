@@ -6,7 +6,7 @@ use App\Http\Controllers\Front\RestaurantController;
 use App\Http\Controllers\Front\RestaurantMenuItemController;
 
 Route::prefix('{locale?}')
-    ->middleware('set.local')
+    ->middleware('set.locale')
     ->group(function () {
         Route::get('/', [HomeController::class, 'index'])->name('home');
         Route::resource('restaurants', RestaurantController::class)->only(['index', 'show']);

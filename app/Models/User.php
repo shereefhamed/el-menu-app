@@ -73,12 +73,22 @@ class User extends Authenticatable
     public function isAdmin()
     {
         // return $this->role->name === 'admin';
-        return $this->roles()->first()->name === 'admin';
+        return $this->role()->name === 'admin';
+    }
+
+    public function isOwner()
+    {
+        return $this->role()->name === 'owner';
     }
 
     public function role()
     {
         return $this->roles->first();
+    }
+
+    public function addons()
+    {
+        return $this->hasMany(Addon::class);
     }
 
     public function scopeFilter(Builder $query, string $search = null, string $filter = null)
@@ -89,20 +99,38 @@ class User extends Authenticatable
         if ($filter === 'trashed') {
             $query->onlyTrashed();
         }
-        
+
         $query->with('roles')->latest();
+    }
+
+    public function scopeOwners(Builder $query)
+    {
+        $ownerRole = Role::owner()->first();
+        $query->whereHas('roles', function (Builder $query) use ($ownerRole) {
+            $query->where('roles.id', $ownerRole->id);
+        });
+    }
+
+    public function scopeOwnerWithoutRestaurant(Builder $query)
+    {
+
+        $query->owners()
+            ->doesntHave('restaurant');
     }
 
     protected static function booted()
     {
-        static::deleting(function(User $user){
+        static::deleting(function (User $user) {
             $user->subscription()->delete();
             $user->payments()->delete();
+            $user->restaurant()->delete();
+            $user->addons()->delete();
         });
 
-        static::restoring(function(User $user){
+        static::restoring(function (User $user) {
             $user->subscription()->restore();
             $user->payments()->restore();
+            $user->restaurant()->restore();
         });
     }
 }

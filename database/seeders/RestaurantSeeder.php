@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Currency;
 use App\Models\Restaurant;
 use App\Models\RestaurantType;
 use App\Models\User;
@@ -22,11 +23,16 @@ class RestaurantSeeder extends Seeder
             }
         );
 
-        $owners->each(function(User $owner){
-            $resturantType = RestaurantType::all()->random();
+        $currencies = Currency::all();
+        $restaurantTypes = RestaurantType::all();
+
+        $owners->each(function(User $owner) use($currencies, $restaurantTypes){
+            $resturantType = $restaurantTypes->random();
+            $currency = $currencies->random();
             Restaurant::factory()->create([
                 'user_id' => $owner->id,
                 'restaurant_type_id' => $resturantType->id,
+                'currency_id' => $currency->id,
             ]);
         });
     }

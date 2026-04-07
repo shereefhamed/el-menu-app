@@ -13,11 +13,11 @@ return new class extends Migration {
         Schema::create('menu_items', function (Blueprint $table) {
             $table->id();
             $table->string('name_en');
-            $table->string('name_ar')->nullable();
+            $table->string('name_ar');
             $table->string('slug')->unique();
-            $table->string('description_en');
+            $table->string('description_en')->nullable();
             $table->string('description_ar')->nullable();
-            $table->string('image_ur')->nullable();
+            $table->string('image_url')->nullable();
             $table->double('price')->nullable();
             $table->unsignedBigInteger('restaurant_id');
             $table->unsignedBigInteger('category_id');
@@ -28,6 +28,7 @@ return new class extends Migration {
                 ->references('id')->on('categories')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

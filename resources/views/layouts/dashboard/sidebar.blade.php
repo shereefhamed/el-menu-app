@@ -27,7 +27,35 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                 <li class="nav-item">
+                    <a href="{{ route('dashboard.categories.index') }}"
+                        class="nav-link {{ request()->routeIs('dashboard.categories.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-book-fill"></i>
+                        <p>Categories</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.menu-items.index') }}"
+                        class="nav-link {{ request()->routeIs('dashboard.menu-items.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-egg-fried"></i>
+                        <p>Menu items</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.addons.index') }}"
+                        class="nav-link {{ request()->routeIs('dashboard.addons.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-bag-plus-fill"></i>
+                        <p>Addons</p>
+                    </a>
+                </li>
                 @can('isAdmin')
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.restaurants.index') }}"
+                            class="nav-link {{ request()->routeIs('dashboard.restaurants.index') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi bi-fork-knife"></i>
+                            <p>Restaurants</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('dashboard.countries.index') }}"
                             class="nav-link {{ request()->routeIs('dashboard.countries.index') ? 'active' : '' }}">
@@ -82,6 +110,16 @@
                             class="nav-link {{ request()->routeIs('dashboard.social-media.index') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-wechat"></i>
                             <p>Social Media</p>
+                        </a>
+                    </li>
+                @endcan
+
+                @can('isOwner')
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.info.index') }}"
+                            class="nav-link {{ request()->routeIs('dashboard.info.index') ? 'active' : '' }}">
+                            <i class="nav-icon bi bi-info-circle"></i>
+                            <p>Info</p>
                         </a>
                     </li>
                 @endcan

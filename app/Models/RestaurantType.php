@@ -15,9 +15,14 @@ class RestaurantType extends Model
         'name_ar',
     ];
 
-    public function restaurant()
+    // public function restaurant()
+    // {
+    //     return $this->hasOne(Restaurant::class);
+    // }
+
+    public function restaurants()
     {
-        return $this->hasOne(Restaurant::class);
+        return $this->hasMany(Restaurant::class,);
     }
 
     public function scopeFilter(Builder $query, string $search = null)

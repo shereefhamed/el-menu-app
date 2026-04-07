@@ -1,7 +1,7 @@
 @extends('layouts.menu')
 @section('title', $restaurant->name)
 @section('content')
-    <div class="container mt-5 about">
+    <div class="container mt-5 about vh-100">
         @foreach ($restaurant->branches as $branche)
             <div class="card mb-3">
                 <div class="card-header">

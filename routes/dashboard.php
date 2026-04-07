@@ -1,14 +1,23 @@
 <?php
 
+use App\Http\Controllers\Dashboard\DashbaordMenuItemController;
+use App\Http\Controllers\Dashboard\DashboardAddonController;
 use App\Http\Controllers\Dashboard\DashboardAttributeController;
+use App\Http\Controllers\Dashboard\DashboardCategoryController;
 use App\Http\Controllers\Dashboard\DashboardCityController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardCountryController;
+use App\Http\Controllers\Dashboard\DashboardInfoController;
 use App\Http\Controllers\Dashboard\DashboardPaymentController;
 use App\Http\Controllers\Dashboard\DashboardPlanController;
+use App\Http\Controllers\Dashboard\DashboardQRController;
+use App\Http\Controllers\Dashboard\DashboardRestaurantController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantTypeController;
 use App\Http\Controllers\Dashboard\DashboardSocialMediaController;
 use App\Http\Controllers\Dashboard\DashboardUserController;
+use App\Http\Controllers\Dashboard\DashboardRestaurantBranchController;
+use App\Http\Controllers\Dashboard\DashboardRestaurantSocialMediaController;
+
 Route::prefix('/dashboard')
     ->middleware('auth')
     ->group(function () {
@@ -58,4 +67,55 @@ Route::prefix('/dashboard')
 
         Route::resource('social-media', DashboardSocialMediaController::class)
             ->names('dashboard.social-media');
+
+        Route::get('/info', [DashboardInfoController::class, 'index'])
+            ->name('dashboard.info.index');
+        Route::post('/info', [DashboardInfoController::class, 'store'])
+            ->name('dashboard.info.store');
+
+        // Categories
+        Route::resource('categories', DashboardCategoryController::class)
+            ->names('dashboard.categories');
+        Route::put('/categories/{category}/restore', [DashboardCategoryController::class, 'restore'])
+            ->name('dashboard.categories.restore');
+        Route::delete('/categories/{category}/force-delete', [DashboardCategoryController::class, 'forceDelete'])
+            ->name('dashboard.categories.force-delete');
+
+        // MenuItems
+        Route::resource('menu-items', DashbaordMenuItemController::class)
+            ->names('dashboard.menu-items');
+        Route::put('/menu-items/{menu_item}/restore', [DashbaordMenuItemController::class, 'restore'])
+            ->name('dashboard.menu-items.restore');
+        Route::delete('/menu-items/{menu_item}/force-delete', [DashbaordMenuItemController::class, 'forceDelete'])
+            ->name('dashboard.menu-items.force-delete');
+
+        // Route::resource('restaurants.categories', DashboardRestaurantCategoryController::class)->only(['show']);
+    
+        //Restaurants
+        Route::resource('restaurants', DashboardRestaurantController::class)
+            ->names('dashboard.restaurants');
+        Route::delete('/restauarnts/{resturant}/force-delete', [DashboardRestaurantController::class, 'forceDelete'])
+            ->name('dashboard.restaurants.force-delete');
+        Route::put('/restaurants/{restaurant}/restore', [DashboardRestaurantController::class, 'restore'])
+            ->name('dashboard.restaurants.restore');
+        Route::get('/restaurants/{restaurant}/categories', [DashboardRestaurantController::class, 'categories'])
+            ->name('dashboard.restaurants.categories');
+
+        //Addons
+        Route::resource('addons', DashboardAddonController::class)
+            ->names('dashboard.addons');
+
+        // Restaurant Branche
+        Route::resource('restaurants.branches', DashboardRestaurantBranchController::class)
+            ->names('dashboard.restaurants.branches')
+            ->only(['store', 'update', 'destroy']);
+
+        //Resataurant Socail Media
+        Route::resource('restaurants.socailMedia', DashboardRestaurantSocialMediaController::class)
+            ->only(['store', 'update', 'destroy'])
+            ->names('dashbaord.restaurant.social-media');
+
+        //QR code
+        Route::get('/qr-code/download', [DashboardQRController::class, 'download'])
+            ->name('dashboard.qr.download');
     });

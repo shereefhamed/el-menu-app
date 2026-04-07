@@ -19,6 +19,7 @@ class DashboardActionLinks extends Component
         public ?string $deleteRoute = null,
         public ?string $forceDeleteRoute = null,
         public ?string $viewRoute = null,
+        public ?array $viewParams = null,
     ) {
         //
     }

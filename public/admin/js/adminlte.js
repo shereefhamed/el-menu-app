@@ -1098,9 +1098,9 @@ if (deleteActionLink) {
     });
 }
 
-if(restoreActionLink){
-    restoreActionLink.forEach(btn=>{
-        btn.addEventListener('click', function(e){
+if (restoreActionLink) {
+    restoreActionLink.forEach(btn => {
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             const formId = this.dataset.formid;
             const form = document.getElementById('dashboard-restore-action-form-' + formId);
@@ -1109,10 +1109,10 @@ if(restoreActionLink){
     });
 }
 
-if(forceDeleteActionLink){
-    forceDeleteActionLink.forEach(btn=>{
+if (forceDeleteActionLink) {
+    forceDeleteActionLink.forEach(btn => {
         console.log(btn);
-        btn.addEventListener('click', function(e){
+        btn.addEventListener('click', function (e) {
             e.preventDefault();
             const formId = this.dataset.formid;
             const form = document.getElementById('dashboard-force-delete-action-form-' + formId);
@@ -1121,3 +1121,27 @@ if(forceDeleteActionLink){
     });
 }
 
+const restaurant = document.getElementById('restaurant_id');
+const categories = document.getElementById('category_id');
+
+if (restaurant) {
+    restaurant.addEventListener('change', function (e) {
+        console.log(this.value);
+        fetch(`/dashboard/restaurants/${this.value}/categories`)
+            .then(res => {
+                return res.json();
+            })
+            .then(data => {
+                categories.innerHTML=`<option>Select category</option>`;
+                data.forEach(cat=>{
+                    categories.innerHTML += `
+                        <option 
+                            value="${cat.id}" >
+                            ${cat.name_en}
+                        </option>
+                    `
+                });
+            })
+            .catch(e => console.log(e));
+    });
+}

@@ -14,8 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('logo')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('restaurant_type_id')->nullable();
+            $table->unsignedBigInteger('currency_id')->nullable();
+
             $table->foreign('restaurant_type_id')
                 ->references('id')
                 ->on('restaurant_types')
@@ -25,7 +28,12 @@ return new class extends Migration {
                 ->on('users')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
+            $table->foreign('currency_id')
+                ->references('id')
+                ->on('currencies')
+                ->onDelete('set null');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

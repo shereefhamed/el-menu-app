@@ -18,7 +18,7 @@ class RestaurantSocialMediaSeeder extends Seeder
         $socialMedia = SocialMedia::all();
 
         $restaurants->each(function(Restaurant $restaurant) use($socialMedia){
-            $number = random_int(0, $socialMedia->count());
+            $number = random_int(1, $socialMedia->count());
             $media  = $socialMedia->random($number);
             $restaurant->socialMedia()->attach($media->pluck('id'),[
                 'url' => 'https://facebook.com/myrestaurant'

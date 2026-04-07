@@ -8,7 +8,7 @@
         @endif
     @else
         @if ($viewRoute)
-            <a href="{{ route($viewRoute, $model) }}">View</a> |
+            <a href="{{ route($viewRoute,$viewParams ??  $model) }}" target="_blank">View</a> |
         @endif
             <a href="{{ route($editRoute, $model) }}">Edit</a> 
         @if($deleteRoute)

@@ -9,6 +9,12 @@ class Branche extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'address',
+        'phone',
+        'city_id',
+    ];
+
     public function restaurant()
     {
         return $this->belongsTo(Restaurant::class);
