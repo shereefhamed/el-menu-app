@@ -24,11 +24,22 @@ class Role extends Model
 
     public function scopeOwner(Builder $query)
     {
-        $query->where('name', 'owner') ;
+        $query->where('name', 'owner');
     }
 
     public function scopeAdmin(Builder $query)
     {
-        $query->where('name', 'admin') ;
+        $query->where('name', 'admin');
+    }
+
+    public function scopeCustomer(Builder $query)
+    {
+        $query->where('name', 'customer');
+    }
+
+    public function scopeDashboardAllowedRoles(Builder $query)
+    {
+        $query->where('name', 'admin')
+            ->orWhere('name', 'owner');
     }
 }

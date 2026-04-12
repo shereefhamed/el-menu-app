@@ -35,7 +35,7 @@
                                     forceDeleteRoute="dashboard.plans.force-delete" />
                             </td>
                             <td>{{ $plan->name_ar }}</td>
-                            <td>{{ $plan->amount }}</td>
+                            <td>{{ $plan->price }}</td>
                             <td>{{ $plan->created_at->format('d-m-Y') }}</td>
                         </tr>
                     @endforeach

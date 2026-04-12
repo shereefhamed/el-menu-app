@@ -13,11 +13,12 @@ class PlanSeeder extends Seeder
      */
     public function run(): void
     {
-        $plans = ['pro', 'premium'];
+        $plans = ['free', 'pro', 'enterprise'];
         foreach ($plans as $plan) {
             Plan::factory()->create([
                 'name_en' => $plan,
                 'name_ar' => $plan,
+                'options' => [],
             ]);
         }
 

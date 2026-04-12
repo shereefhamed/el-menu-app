@@ -13,7 +13,7 @@ class AddonPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isOwner();
     }
 
     /**
@@ -21,7 +21,7 @@ class AddonPolicy
      */
     public function view(User $user, Addon $addon): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isOwner();
     }
 
     /**
@@ -29,7 +29,7 @@ class AddonPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isOwner();
     }
 
     /**

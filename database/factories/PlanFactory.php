@@ -19,7 +19,7 @@ class PlanFactory extends Factory
         return [
             'description_en' => fake()->sentence(),
             'description_ar' => fake()->sentence(),
-            'amount' => fake()->randomFloat(nbMaxDecimals:2, min:1, max:200),
+            'price' => fake()->randomFloat(nbMaxDecimals:2, min:1, max:200),
         ];
     }
 }

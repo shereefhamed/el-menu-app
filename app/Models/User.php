@@ -103,6 +103,14 @@ class User extends Authenticatable
         $query->with('roles')->latest();
     }
 
+    public function scopeAdmins(Builder $query)
+    {
+        $adminRole = Role::admin()->first();
+        $query->whereHas('roles', function (Builder $query) use ($adminRole) {
+            $query->where('roles.id', $adminRole->id);
+        });
+    }
+
     public function scopeOwners(Builder $query)
     {
         $ownerRole = Role::owner()->first();
@@ -116,6 +124,15 @@ class User extends Authenticatable
 
         $query->owners()
             ->doesntHave('restaurant');
+    }
+
+    public function getRedirectRoute()
+    {
+        return match ($this->role()->name) {
+            'owner' => $this->restaurant ? '/dashboard' : route('restaurants.create'),
+            'customer' => '/',
+            default => '/',
+        };
     }
 
     protected static function booted()

@@ -10,6 +10,12 @@ class Subscription extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'plan_id',
+        'start_at',
+        'end_at',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

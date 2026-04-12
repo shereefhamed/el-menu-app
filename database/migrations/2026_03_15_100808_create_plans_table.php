@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('description_en');
             $table->string('name_ar');
             $table->string('description_ar');
-            $table->double('amount');
+            $table->double('price');
+            $table->json('options');
             $table->timestamps();
             $table->softDeletes();
         });

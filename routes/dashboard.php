@@ -19,7 +19,7 @@ use App\Http\Controllers\Dashboard\DashboardRestaurantBranchController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantSocialMediaController;
 
 Route::prefix('/dashboard')
-    ->middleware('auth')
+    ->middleware(['auth', 'dashboard'])
     ->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -116,6 +116,6 @@ Route::prefix('/dashboard')
             ->names('dashbaord.restaurant.social-media');
 
         //QR code
-        Route::get('/qr-code/download', [DashboardQRController::class, 'download'])
+        Route::get('/qr-code/download/{restaurant}', [DashboardQRController::class, 'download'])
             ->name('dashboard.qr.download');
     });

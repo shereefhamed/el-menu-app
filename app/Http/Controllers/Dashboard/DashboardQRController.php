@@ -3,21 +3,23 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use \SimpleSoftwareIO\QrCode\Facades\QrCode;
+use App\Models\Restaurant;
 
-use Illuminate\Http\Request;
 
 class DashboardQRController extends Controller
 {
-    public function download()
+    public function download(Restaurant $restaurant)
     {
         // $qr = \SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')
         // ->size(300)
         // ->generate('https://example.com');
-         $qr = \SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)
-        ->generate('https://example.com');
 
-    return response($qr)
-        ->header('Content-Type', 'image/png')
-        ->header('Content-Disposition', 'attachment; filename="qrcode.png"');
+        $qr = QrCode::format('png')->size(300)
+            ->generate(route('restaurants.show', ['locale' => app()->getLocale(), 'restaurant' => $restaurant]));
+
+        return response($qr)
+            ->header('Content-Type', 'image/png')
+            ->header('Content-Disposition', 'attachment; filename="' . $restaurant->name . '.png"');
     }
 }

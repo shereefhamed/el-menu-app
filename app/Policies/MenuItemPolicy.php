@@ -13,7 +13,7 @@ class MenuItemPolicy
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isOwner();
     }
 
     /**
@@ -29,7 +29,7 @@ class MenuItemPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return $user->isAdmin() || $user->isOwner();
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -23,6 +24,13 @@ class RestaurantType extends Model
     public function restaurants()
     {
         return $this->hasMany(Restaurant::class,);
+    }
+
+    public function name():Attribute
+    {
+        return Attribute::get(
+            get: fn()=> $this->{'name_' . app()->getLocale() }
+        );
     }
 
     public function scopeFilter(Builder $query, string $search = null)

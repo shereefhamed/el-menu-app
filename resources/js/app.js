@@ -6,10 +6,17 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Alpine from 'alpinejs';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 window.Alpine = Alpine;
 
 Alpine.start();
+
+
+AOS.init({
+  duration: 1000,
+});
 
 
 
@@ -26,9 +33,13 @@ function scrollFunction() {
     document.body.scrollTop > 20 ||
     document.documentElement.scrollTop > 20
   ) {
-    backToTop.style.display = "block";
+    if (backToTop) {
+      backToTop.style.display = "block";
+    }
   } else {
-    backToTop.style.display = "none";
+    if (backToTop) {
+      backToTop.style.display = "none";
+    }
   }
 }
 
@@ -65,22 +76,57 @@ const swiper = new Swiper('.swiper', {
   }
 });
 
-// const increaseCartBtn = document.getElementById('increase-cart');
-// const decreaseCartBtn = document.getElementById('decrease-cart');
-// const cartQuantity = document.getElementById('cart-quatity');
 
-// if (increaseCartBtn) {
-//   increaseCartBtn.addEventListener('click', function () {
-//     cartQuantity.value = parseInt(cartQuantity.value) + 1;
-//   });
-// }
+//Video modal
+const modal = document.getElementById('videoModal');
+const iframe = document.getElementById('youtubeVideo');
 
-// if (decreaseCartBtn) {
-//   decreaseCartBtn.addEventListener('click', function () {
-//     if (parseInt(cartQuantity.value) > 1) {
-//       cartQuantity.value = parseInt(cartQuantity.value) - 1;
-//     }
+modal.addEventListener('hidden.bs.modal', function () {
+  iframe.src = iframe.src; // reset = stop video
+});
 
-//   });
-// }
+//Contact us form
+const contactForm = document.getElementById('contact-form');
+const contactFormSubmitBtn = document.getElementById('contact-form-submit-btn');
+if (contactFormSubmitBtn) {
+  const nameInput = document.getElementById('name');
+  const phoneInput = document.getElementById('phone');
+  const messageInput = document.getElementById('message');
+  const successMessaage = document.getElementById('success-message');
+
+  contactFormSubmitBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    fetch(contactForm.action, {
+      'method': 'POST',
+      body: new FormData(contactForm),
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+      .then(resposne => resposne.json())
+      .then(data => {
+        if (data.errors && data.errors.name) {
+          nameInput.classList.add('is-invalid');
+        } else {
+          nameInput.classList.remove('is-invalid');
+        }
+        if (data.errors && data.errors.phone) {
+          phoneInput.classList.add('is-invalid');
+        } else {
+          phoneInput.classList.remove('is-invalid');
+        }
+        if (data.errors && data.errors.message) {
+          messageInput.classList.add('is-invalid');
+        } else {
+          messageInput.classList.remove('is-invalid');
+        }
+        console.log(data);
+        if(data.status){
+          successMessaage.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+        }
+      })
+  });
+}
+
+
 

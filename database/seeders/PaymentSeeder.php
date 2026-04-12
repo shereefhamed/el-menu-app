@@ -25,7 +25,7 @@ class PaymentSeeder extends Seeder
             Payment::factory()->create([
                 'user_id' => $owner->id,
                 'plan_id' => $plan->id,
-                'amount' => $plan->amount,
+                'amount' => $plan->price,
             ]);
         });
     }

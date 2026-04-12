@@ -26,7 +26,8 @@ class PlanRequest extends FormRequest
             'name_ar' => 'required',
             'description_en' => 'required',
             'description_ar' => 'required',
-            'amount' => 'required|numeric'
+            'price' => 'required|numeric',
+            'options' => 'required',
         ];
     }
 }

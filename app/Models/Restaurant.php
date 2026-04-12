@@ -62,44 +62,87 @@ class Restaurant extends Model
         return 'slug';
     }
 
-    public function scopeSubscripedRestaturant(Builder $builder, string $slug)
+    public function scopeSubscripedRestaturants(Builder $builder)
     {
 
         $builder->with('categories.menuItems')
-            ->whereRelation('user.subscription', 'end_at', '>=', now())
+            ->whereRelation('user.subscription', 'end_at', '>=', now());
+
+    }
+
+    public function scopeSubscripedRestaturant(Builder $builder, string $slug)
+    {
+
+        $builder->ubscripedRestaturants()
             ->where('slug', $slug);
     }
 
     public function logo()
     {
+        if(!$this->logo){
+            return 'https://placehold.net/400x400.png';
+        }
         return Storage::url($this->logo);
     }
 
-    public function scopeFilter(Builder $query, string $fitler = null, string $userId = null, string $search =null)
+    public function scopeFilter(Builder $query, string $fitler = null, string $userId = null, string $search = null)
     {
-         
+
         $query->when(
-            $fitler==='trashed',
-            function($q){
+            $fitler === 'trashed',
+            function ($q) {
                 $q->onlyTrashed();
             }
         );
 
         $query->when(
             $userId,
-            function($q) use($userId){
+            function ($q) use ($userId) {
                 $q->where('user_id', $userId);
             }
         );
 
         $query->when(
             $search,
-            function($q) use($search){
+            function ($q) use ($search) {
                 $q->where('name', 'like', "%{$search}%");
             }
         );
-        
+
         $query->with('user', 'currency', 'type');
+    }
+
+    public function scopeRestaurantSearch(Builder $query, string $foodType = null, string $country = null, string $city = null)
+    {
+        $query->subscripedRestaturants();
+        $query->when(
+            $foodType,
+            function ($q) use ($foodType) {
+                $q->where('restaurant_type_id', $foodType);
+            }
+        );
+        $query->when(
+            $country,
+            function($q) use($country){
+                $q->whereHas(
+                    'branches.city',
+                    function($q) use($country){
+                        $q->where('country_id', $country);
+                    }
+                );
+            }
+        );
+        $query->when(
+            $city,
+            function ($q) use ($city) {
+                $q->whereHas(
+                    'branches',
+                    function($q) use($city){
+                        $q->where('city_id', $city);
+                    }
+                );
+            }
+        );
     }
 
     protected static function booted()
@@ -108,17 +151,17 @@ class Restaurant extends Model
             $restaurant->slug = Str::slug($restaurant->name);
         });
 
-        static::saving(function(Restaurant $restaurant){
+        static::saving(function (Restaurant $restaurant) {
             $restaurant->slug = Str::slug($restaurant->name);
         });
 
-        static::deleting(function(Restaurant $restaurant){
+        static::deleting(function (Restaurant $restaurant) {
             $restaurant->categories()->delete();
             $restaurant->menuItems()->delete();
             $restaurant->branches()->delete();
         });
 
-        static::restoring(function(Restaurant $restaurant){
+        static::restoring(function (Restaurant $restaurant) {
             $restaurant->categories()->restore();
             $restaurant->menuItems()->restore();
         });
