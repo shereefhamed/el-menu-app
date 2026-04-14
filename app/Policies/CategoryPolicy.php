@@ -27,9 +27,22 @@ class CategoryPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return $user->isAdmin() || $user->isOwner();
+     
+        if ($user->isAdmin()) {
+            return Response::allow();
+        }
+        if ($user->isOwner()) {
+
+            $numberOfAllowdCategories = $user->subscription->plan->numberOfCategories();
+            $numberOfcategories = $user->restaurant->categories?->count() ?? 0;
+            if ($numberOfcategories < $numberOfAllowdCategories) {
+                return Response::allow();
+            }
+
+        }
+        return Response::deny('You have exceeded the allowed number of categories');
     }
 
     /**

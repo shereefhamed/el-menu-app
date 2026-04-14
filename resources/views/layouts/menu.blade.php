@@ -21,9 +21,10 @@
     <nav class="navbar sticky-top bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="{{ route('restaurants.show', $restaurant) }}">{{ $restaurant->name }}</a>
-
+            <!-- <input type="text" class="form-control" id="item-search"> -->
             <div class="header-icons">
-                <div class="header-icon"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                
+                <div class="header-icon header-search-icon"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                 <div class="header-icon">
                     <a href="{{ App\Helper\LocaleHelper::url(app()->getLocale() === 'en' ? 'ar' : 'en') }}">
                         <i class="fa-solid fa-globe"></i>
@@ -31,8 +32,12 @@
                 </div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-heart"></i></a></div>
-                <div class="header-icon desktop-only"><a href="{{ route('about.index', $restaurant) }}"><i
-                            class="fa-solid fa-info"></i></a></div>
+                <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-circle-user"></i></a></div>
+                <div class="header-icon">
+                    <a href="{{ route('about.index', $restaurant) }}">
+                        <i class="fa-solid fa-info"></i>
+                    </a>
+                </div>
             </div>
 
         </div>
@@ -44,8 +49,9 @@
                         class="fa-regular fa-house"></i></a></li>
             <li class="bottom-navbar-item border-end"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></li>
             <li class="bottom-navbar-item border-end"><a href="#"><i class="fa-regular fa-heart"></i></a></li>
-            <li class="bottom-navbar-item"><a href="{{ route('about.index', $restaurant) }}"><i
-                        class="fa-solid fa-circle-info"></i></a></li>
+            <li class="bottom-navbar-item">
+                <a href="#"><i class="fa-regular fa-circle-user"></i></a>
+            </li>
         </ul>
     </nav>
     <button type="button" class="btn btn-success btn-floating btn-lg" id="btn-back-to-top">

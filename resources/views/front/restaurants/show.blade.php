@@ -17,7 +17,7 @@
             <div class="row" id="{{ Str::slug($category->name_en) }}">
                 <h4>{{ $category->name}}</h4>
                 @foreach ($category->menuItems as $menuItem)
-                    <div class="col-md-3 col-6">
+                    <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                         @include('front.menu-items.partials.menu-item-card')
                     </div>
                 @endforeach

@@ -27,9 +27,20 @@ class MenuItemPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user): Response
     {
-        return $user->isAdmin() || $user->isOwner();
+   
+        if ($user->isAdmin()) {
+            return Response::allow();
+        }
+        if ($user->isOwner()) {
+            $numberOfAllowdenuItems = $user->subscription->plan->numberOfItems();
+            $numberOfItems = $user->restaurant->menuItems?->count() ?? 0;
+            if ($numberOfItems < $numberOfAllowdenuItems) {
+                return Response::allow();
+            }
+        }
+        return Response::deny('You have exceeded the allowed number of menu items');
     }
 
     /**

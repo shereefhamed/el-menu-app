@@ -42,7 +42,12 @@ section {
 
 .header-icons {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
+}
+
+#item-search{
+    display: none;
 }
 
 .header-icon {
@@ -83,8 +88,10 @@ img {
 }
 
 .menu-item-card .card-body {
-    height: 18rem;
+    height: 10rem; 
 }
+
+
 
 .bottom-navbar {
     position: fixed;
@@ -481,7 +488,7 @@ footer {
     }
 
     .menu-item-card .card-body {
-        height: 12rem;
+        /* height: 12rem; */
     }
 
     .contact-info {

@@ -81,13 +81,7 @@ class RestaurantController extends Controller
      */
     public function show(string $locale, string $slug)
     {
-        $restaurant = Restaurant::with('categories.menuItems')
-            ->whereRelation('user.subscription', 'end_at', '>=', now())
-            ->where('slug', $slug)
-            ->first();
-
-        abort_if(!$restaurant, 404);
-
+        $restaurant = Restaurant::subscripedRestaturant($slug)->firstOrFail();
         return view(
             'front.restaurants.show',
             ['restaurant' => $restaurant]

@@ -81,6 +81,11 @@ class User extends Authenticatable
         return $this->role()->name === 'owner';
     }
 
+    public function isCustomer()
+    {
+        return $this->role()->name === 'cusotmer';
+    }
+
     public function role()
     {
         return $this->roles->first();
@@ -131,6 +136,7 @@ class User extends Authenticatable
         return match ($this->role()->name) {
             'owner' => $this->restaurant ? '/dashboard' : route('restaurants.create'),
             'customer' => '/',
+            'admin' => '/dashboard',
             default => '/',
         };
     }

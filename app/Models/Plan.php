@@ -30,7 +30,10 @@ class Plan extends Model
         return $this->hasMany(Payment::class);
     }
 
-
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
+    }
 
     protected function name(): Attribute
     {

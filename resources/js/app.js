@@ -81,9 +81,11 @@ const swiper = new Swiper('.swiper', {
 const modal = document.getElementById('videoModal');
 const iframe = document.getElementById('youtubeVideo');
 
-modal.addEventListener('hidden.bs.modal', function () {
-  iframe.src = iframe.src; // reset = stop video
-});
+if (modal) {
+  modal.addEventListener('hidden.bs.modal', function () {
+    iframe.src = iframe.src; // reset = stop video
+  });
+}
 
 //Contact us form
 const contactForm = document.getElementById('contact-form');
@@ -121,10 +123,20 @@ if (contactFormSubmitBtn) {
           messageInput.classList.remove('is-invalid');
         }
         console.log(data);
-        if(data.status){
+        if (data.status) {
           successMessaage.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
         }
       })
+  });
+}
+
+const headerSearchIcon = document.querySelector('.header-search-icon');
+const iteamSearchInput = document.getElementById('item-search');
+console.log(iteamSearchInput);
+if (headerSearchIcon) {
+  headerSearchIcon.addEventListener('click', function (e) {
+    e.preventDefault();
+    iteamSearchInput.style.display = 'block';
   });
 }
 

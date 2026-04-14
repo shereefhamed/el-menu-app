@@ -73,7 +73,7 @@ class Restaurant extends Model
     public function scopeSubscripedRestaturant(Builder $builder, string $slug)
     {
 
-        $builder->ubscripedRestaturants()
+        $builder->subscripedRestaturants()
             ->where('slug', $slug);
     }
 
