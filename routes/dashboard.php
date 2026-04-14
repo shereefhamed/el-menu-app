@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\DashboardQRController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantTypeController;
 use App\Http\Controllers\Dashboard\DashboardSocialMediaController;
+use App\Http\Controllers\Dashboard\DashboardUpgradeSubscription;
 use App\Http\Controllers\Dashboard\DashboardUserController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantBranchController;
 use App\Http\Controllers\Dashboard\DashboardRestaurantSocialMediaController;
@@ -118,4 +119,13 @@ Route::prefix('/dashboard')
         //QR code
         Route::get('/qr-code/download/{restaurant}', [DashboardQRController::class, 'download'])
             ->name('dashboard.qr.download');
+
+        //Upgrade subscription
+        Route::get('/upgrade-subscription', [DashboardUpgradeSubscription::class, 'index'])
+            ->name('dashboard.upgrade-subscription.index');
+        Route::get('/upgrade-subscription/payment-success', [DashboardUpgradeSubscription::class, 'paymentSuccess'])
+            ->name('dashboard.upgrade-subscription.payment-success');
+        Route::get('/upgrade-subscription/{planId}', [DashboardUpgradeSubscription::class, 'subscripe'])
+            ->name('dashboard.upgrade-subscription.subscripe');
+        
     });

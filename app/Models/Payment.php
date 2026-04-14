@@ -11,6 +11,12 @@ class Payment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = [
+        'transaction_id',
+        'amount',
+        'plan_id',
+    ];
+
     public function plan()
     {
         return $this->belongsTo(Plan::class);

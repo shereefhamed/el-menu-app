@@ -23,6 +23,8 @@ class Plan extends Model
 
     protected $casts = [
         'options' => 'array',
+        'end_at' => 'datetime',
+        'start_at' => 'datatime',
     ];
 
     public function payments()
@@ -52,6 +54,11 @@ class Plan extends Model
     {
         $query->where('name_en', 'free')
             ->orWhere('price', 0);
+    }
+
+    public function scopePaid(Builder $query)
+    {
+        $query->where('price', '>', 0)->orderBy('price');
     }
 
     public function isFree()

@@ -27,7 +27,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{ route('dashboard.categories.index') }}"
                         class="nav-link {{ request()->routeIs('dashboard.categories.index') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-book-fill"></i>
@@ -120,6 +120,18 @@
                             class="nav-link {{ request()->routeIs('dashboard.info.index') ? 'active' : '' }}">
                             <i class="nav-icon bi bi-info-circle"></i>
                             <p>Info</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard.upgrade-subscription.index') }}"
+                            class="nav-link justify-content-between {{ request()->routeIs('dashboard.upgrade-subscription.index') ? 'active' : '' }}">
+                            <div>
+                                <p class="m-0 p-0">{{ Str::ucfirst(auth()->user()->subscription->plan->name) }}</p>
+                                <br>
+                                <span>{{ auth()->user()->subscription->plan->price  }} /mo</span>
+                            </div>
+                            <span>Change</span>
+
                         </a>
                     </li>
                 @endcan
