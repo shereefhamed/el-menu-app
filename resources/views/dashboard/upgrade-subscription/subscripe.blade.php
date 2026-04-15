@@ -1,19 +1,6 @@
 @extends('layouts.dashboard.dashboard')
 @section('title', 'Upgrade subscription')
 @section('content')
-<style>
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2rem;
-    }
-    #paymob-elements {
-      width: 50%;
-    }
-</style>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paymob-pixel@latest/styles.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paymob-pixel@latest/main.css"> -->
 
@@ -72,7 +59,9 @@
                 window.dispatchEvent(event);
             });
     </script>
-    <div id="paymob-elements"></div>
+    <div class="payment-content">
+        <div id="paymob-elements"></div>
+    </div>
       <!-- <button id="payFromOutsideButton">Pay From Outside Button</button> -->
        
 @endsection

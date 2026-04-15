@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6">
-                <h2>EL-MENU APP</h2>
-                <p">{{ __('Create Free QR Code for Restaurant Menu') }}</p>
+                <h2 class="mb-3">EL-MENU APP</h2>
+                <p class="mb-0">{{ __('Create Free QR Code for Restaurant Menu') }}</p>
                 <p>{{ __('Convert your menu into a QR Code with our App, and then share it with customers.') }}</p>
                 <div class="d-flex align-items-center mt-5">
                     <a href="{{ route('register') }}" class="btn btn-success">{{ __('Register Now') }}</a>
@@ -15,7 +15,7 @@
             </div>
             <div class="col-md-6">
                 <div class="hero-image" data-aos="fade-left" data-aos-offset="0">
-                    <img src="{{ asset('images/mobile_2.png') }}" alt="mobile">
+                    <img src="{{ asset('images/hero.png') }}" alt="mobile">
                 </div>
             </div>
         </div>

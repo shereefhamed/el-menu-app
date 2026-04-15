@@ -4,6 +4,7 @@
 @section('content')
     @include('front.home.partials.hero')
     @include('front.home.partials.search')
+    @include('front.home.partials.demo')
     @include('front.home.partials.how-it-works')
     @include('front.home.partials.features')
     @include('front.home.partials.pricing')

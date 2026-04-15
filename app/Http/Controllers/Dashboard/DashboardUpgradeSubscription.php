@@ -37,7 +37,7 @@ class DashboardUpgradeSubscription extends Controller
                     "amount" => $plan->price * 100,
                     "currency" => "EGP",
                     "payment_methods" => [
-                        4327981
+                        (int)env('PAYMOB_ONLINE_CARD_ID')
                     ],
                     "items" => [
                         [
@@ -66,7 +66,7 @@ class DashboardUpgradeSubscription extends Controller
                 ]
             );
         if ($response->failed()) {
-            
+            return back()->with('status', 'Something error, try again later');
         }
         $body = $response->json();
         $clientSecret = $body['client_secret'];

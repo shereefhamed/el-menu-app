@@ -18205,10 +18205,23 @@ a {
   align-items: center;
 }
 
-.qr-code{
-    text-align: center;
+.qr-code {
+  text-align: center;
 }
 
-.qr-code svg{
+.qr-code svg {
   width: 100%;
+}
+
+.payment-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+#paymob-elements {
+  width: 50%;
 }
