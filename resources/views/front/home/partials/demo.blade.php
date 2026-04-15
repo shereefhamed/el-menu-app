@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-6" data-aos="fade-right">
-                <img src="{{ asset('images/demo.jpg') }}" alt="demo" class="rounded">
+                <img src="{{ asset('images/demo.webp') }}" alt="demo" class="rounded">
             </div>
             <div class="col-md-6" data-aos="fade-left">
                 <div class="mt-2">
