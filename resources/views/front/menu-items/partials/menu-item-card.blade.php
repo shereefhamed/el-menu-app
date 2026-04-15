@@ -8,7 +8,7 @@
         <p>{{ $restaurant->currency->symbol }} {{ $menuItem->price }}</p>
     </div>
     <div class="card-footer d-flex justify-content-between">
-        <a href="#"><i class="fa-regular fa-heart"></i></a>
+        <a href="#" class="favorite-btn" data-id="{{ $menuItem->id }}"><i class="fa-regular fa-heart"></i></a>
         <a href="#"><i class="fa-solid fa-cart-plus"></i></a>
     </div>
 </div>

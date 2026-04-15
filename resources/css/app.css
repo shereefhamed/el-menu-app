@@ -46,7 +46,7 @@ section {
     gap: 0.5rem;
 }
 
-#item-search{
+#item-search {
     display: none;
 }
 
@@ -56,12 +56,27 @@ section {
     width: 2rem;
     height: 2rem;
     text-align: center;
+    position: relative;
 }
 
 .header-icon a {
     color: white;
     font-size: 0.75rem;
     line-height: 2rem;
+}
+
+.favorites-number {
+    position: absolute;
+    top: -10px;
+    right: -11px;
+    font-size: 10px;
+    line-height: 2;
+    color: white;
+    background-color: red;
+    border-radius: 50%;
+    display: none;
+    height: 20px;
+    width: 20px;
 }
 
 .categories .nav-link {
@@ -88,10 +103,10 @@ img {
 }
 
 .menu-item-card .card-body {
-    height: 10rem; 
+    height: 10rem;
 }
 
-.landing-page-nav-bar .navbar-brand .logo{
+.landing-page-nav-bar .navbar-brand .logo {
     width: 128px;
 }
 
@@ -300,7 +315,7 @@ footer {
     text-align: center;
 }
 
-.hero-image img{
+.hero-image img {
     width: 80%;
 }
 
@@ -446,6 +461,8 @@ footer {
 .free-trial {
     font-size: 12px;
 }
+
+
 
 
 @media (min-width: 576px) {

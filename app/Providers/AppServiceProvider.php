@@ -36,6 +36,6 @@ class AppServiceProvider extends ServiceProvider
         });
 
         View::composer(['front.home.index', 'front.restaurants.index'], SearchComposer::class);
-        View::composer(['front.home.index', 'front.restaurants.index'], NavComposer::class);
+        View::composer(['front.home.index', 'front.restaurants.index', 'front.favorites.index'], NavComposer::class);
     }
 }

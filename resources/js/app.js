@@ -132,12 +132,72 @@ if (contactFormSubmitBtn) {
 
 const headerSearchIcon = document.querySelector('.header-search-icon');
 const iteamSearchInput = document.getElementById('item-search');
-console.log(iteamSearchInput);
 if (headerSearchIcon) {
   headerSearchIcon.addEventListener('click', function (e) {
     e.preventDefault();
     iteamSearchInput.style.display = 'block';
   });
+}
+
+//Fvorites
+const favoriteBtns = document.querySelectorAll('.favorite-btn');
+if (favoriteBtns) {
+
+  const getFavorites = () => {
+    return JSON.parse(localStorage.getItem("favorites")) || [];
+  }
+
+  const saveFavorites = (favorites) => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
+
+  const toggleFavorite = (id) => {
+    let favorites = getFavorites();
+
+    if (favorites.includes(id)) {
+      favorites = favorites.filter(item => item != id);
+    } else {
+      favorites.push(id);
+    }
+
+    saveFavorites(favorites);
+    renderFavorites();
+  }
+
+  const renderFavorites = () => {
+    let favorites = getFavorites();
+    const favNumber = document.querySelector('.favorites-number');
+    if (favorites.length > 0) {
+      if (favNumber) {
+        favNumber.style.display = 'block';
+        favNumber.innerHTML = favorites.length;
+      }
+    } else {
+      if (favNumber) {
+        favNumber.style.display = 'none';
+      }
+    }
+    favoriteBtns.forEach(btn => {
+      let id = btn.dataset.id;
+
+      if (favorites.includes(id)) {
+        btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      } else {
+        btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
+      }
+    });
+  }
+
+  favoriteBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      const id = this.dataset.id;
+      toggleFavorite(id)
+    });
+  });
+
+  renderFavorites();
+
 }
 
 

@@ -54,14 +54,16 @@
             });
     }
 
-    if (country && country > 0) {
+    if (country ) {
         const countryId = country.value;
-        getCountryCities(countryId);
+        if(countryId> 0){
+            getCountryCities(countryId);
+        }
         country.addEventListener('change', function (e) {
             const countryId = this.value;
-            getCountryCities(countryId);
-
+            if(countryId>0){
+                getCountryCities(countryId);
+            }
         });
-
     }
 </script>

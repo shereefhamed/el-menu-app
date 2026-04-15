@@ -7,11 +7,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
         integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    @if (app()->getLocale() == 'ar')
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
-    @endif
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title')</title>
 
@@ -23,15 +23,18 @@
             <a class="navbar-brand" href="{{ route('restaurants.show', $restaurant) }}">{{ $restaurant->name }}</a>
             <!-- <input type="text" class="form-control" id="item-search"> -->
             <div class="header-icons">
-                
-                <div class="header-icon header-search-icon"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                <div class="header-icon header-search-icon"><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
+                </div>
                 <div class="header-icon">
                     <a href="{{ App\Helper\LocaleHelper::url(app()->getLocale() === 'en' ? 'ar' : 'en') }}">
                         <i class="fa-solid fa-globe"></i>
                     </a>
                 </div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></div>
-                <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-heart"></i></a></div>
+                <div class="header-icon desktop-only favorites-icon">
+                    <a href="{{ route('favorites.index') }}"><i class="fa-regular fa-heart"></i></a>
+                    <span class="favorites-number"></span>
+                </div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-circle-user"></i></a></div>
                 <div class="header-icon">
                     <a href="{{ route('about.index', $restaurant) }}">
@@ -48,7 +51,9 @@
             <li class="bottom-navbar-item border-end"><a href="{{ route('restaurants.show', $restaurant) }}"><i
                         class="fa-regular fa-house"></i></a></li>
             <li class="bottom-navbar-item border-end"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></li>
-            <li class="bottom-navbar-item border-end"><a href="#"><i class="fa-regular fa-heart"></i></a></li>
+            <li class="bottom-navbar-item border-end">
+                <a href="#"><i class="fa-regular fa-heart"></i></a>
+            </li>
             <li class="bottom-navbar-item">
                 <a href="#"><i class="fa-regular fa-circle-user"></i></a>
             </li>
