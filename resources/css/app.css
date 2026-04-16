@@ -4,6 +4,7 @@
 
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 :root {
     --primary-color: rgb(25, 135, 84);
     --seconary-color: #353535;
@@ -15,6 +16,11 @@ body.ar {
 
 body.en {
     font-family: Figtree, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+}
+
+html,
+body {
+    overflow-x: hidden;
 }
 
 .desktop-only {
@@ -56,6 +62,10 @@ section {
     width: 2rem;
     height: 2rem;
     text-align: center;
+
+}
+
+.favorites-icon {
     position: relative;
 }
 
@@ -103,7 +113,7 @@ img {
 }
 
 .menu-item-card .card-body {
-    height: 10rem;
+    height: 15rem;
 }
 
 .landing-page-nav-bar .navbar-brand .logo {
@@ -462,8 +472,13 @@ footer {
     font-size: 12px;
 }
 
+.favorite-item-delete-icon {
+    cursor: pointer;
+}
 
-
+tr {
+    transition: opacity 0.3s ease;
+}
 
 @media (min-width: 576px) {
     .bottom-navbar {
@@ -499,7 +514,9 @@ footer {
         border-radius: 0;
     }
 
-
+    .menu-item-card .card-body {
+        height: 12rem;
+    }
 }
 
 @media(min-width: 768px) {
@@ -509,10 +526,6 @@ footer {
 
     .menu-item-card img {
         height: 14rem;
-    }
-
-    .menu-item-card .card-body {
-        /* height: 12rem; */
     }
 
     .contact-info {
@@ -538,6 +551,10 @@ footer {
 @media(min-width: 992px) {
     #how-it-works .card-body {
         height: 16rem;
+    }
+
+    .menu-item-card .card-body {
+        height: 10rem;
     }
 }
 

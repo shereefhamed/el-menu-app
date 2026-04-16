@@ -19,6 +19,7 @@ Route::prefix('{locale?}')
         Route::get('/about/{restaurant}', [AboutController::class, 'index'])->name('about.index');
         Route::get('/countries/{cointryId}/cities', [CountryController::class, 'cities'])->named('country.cities');
         Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+        Route::get('/favorites/items', [FavoriteController::class, 'getItems'])->name('favorites.items');
 
         // Route::get('/send-test-email', function () {
         //     // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));

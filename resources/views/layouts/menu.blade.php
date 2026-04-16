@@ -14,7 +14,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title')</title>
-
 </head>
 
 <body class="{{ app()->getLocale() }}">
@@ -32,7 +31,9 @@
                 </div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></div>
                 <div class="header-icon desktop-only favorites-icon">
-                    <a href="{{ route('favorites.index') }}"><i class="fa-regular fa-heart"></i></a>
+                    <a href="{{ route('favorites.index') }}">
+                        <i class="fa-regular fa-heart"></i>
+                    </a>
                     <span class="favorites-number"></span>
                 </div>
                 <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-circle-user"></i></a></div>
@@ -52,7 +53,11 @@
                         class="fa-regular fa-house"></i></a></li>
             <li class="bottom-navbar-item border-end"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></li>
             <li class="bottom-navbar-item border-end">
-                <a href="#"><i class="fa-regular fa-heart"></i></a>
+                <a href="{{ route('favorites.index') }}" class="favorites-icon">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="favorites-number"></span>
+                </a>
+                
             </li>
             <li class="bottom-navbar-item">
                 <a href="#"><i class="fa-regular fa-circle-user"></i></a>

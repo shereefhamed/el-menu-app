@@ -14,7 +14,13 @@
                     <ul class="menu-item-action-list my-3">
                         <li>{{ __('Category:') }} {{ $menuItem->category->name }}</li>
                         <li>{{ __('Share:') }}</li>
-                        <li><a href="#"><i class="fa-regular fa-heart"></i> {{ __('Add To Favorites') }}</a></li>
+                        <li>
+                            <a href="#" class="favorite-btn" data-id="{{ $menuItem->id }}">
+                                <i class="fa-regular fa-heart"></i> 
+                                
+                            </a>
+                            {{ __('Add To Favorites') }}
+                        </li>
                         
                     </ul>
                     @if ($menuItem->attributes->isNotEmpty())
