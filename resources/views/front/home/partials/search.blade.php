@@ -1,34 +1,29 @@
-<div class="container">
-    <div class="search-form-container">
-        <h3 class="text-white">{{ __('Discover restaurants around you') }}</h3>
-        <form action="{{ route('restaurants.index') }}" class="search-form">
-            <select name="food_type" id="food_type" class="form-control">
-                <option value="0">{{ __('Select food type') }}</option>
-                @foreach ($foodTypes as $type)
-                    <option 
-                        value="{{ $type->id }}"
-                        @selected($type->id == request()->input('food_type'))>
-                        {{ $type->name }}
-                    </option>
-                @endforeach
-            </select>
-            <select name="country" id="country" class="form-control">
-                <option value="0">{{ __('Select country') }}</option>
-                @foreach ($countries as $country)
-                    <option 
-                        value="{{ $country->id }}"
-                        @selected($country->id == request()->input('country'))>
-                            {{ $country->name }}
-                        </option>
-                @endforeach
-            </select>
-            <select name="city" id="city" class="form-control">
-                <option value="0">{{ __('Select city') }}</option>
-            </select>
-            <button class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i> {{ __('Search') }}</button>
-        </form>
-    </div>
+<div class="search-form-container">
+    <h3 class="text-white">{{ __('Discover restaurants around you') }}</h3>
+    <form action="{{ route('restaurants.index') }}" class="search-form">
+        <select name="food_type" id="food_type" class="form-control">
+            <option value="0">{{ __('Select food type') }}</option>
+            @foreach ($foodTypes as $type)
+                <option value="{{ $type->id }}" @selected($type->id == request()->input('food_type'))>
+                    {{ $type->name }}
+                </option>
+            @endforeach
+        </select>
+        <select name="country" id="country" class="form-control">
+            <option value="0">{{ __('Select country') }}</option>
+            @foreach ($countries as $country)
+                <option value="{{ $country->id }}" @selected($country->id == request()->input('country'))>
+                    {{ $country->name }}
+                </option>
+            @endforeach
+        </select>
+        <select name="city" id="city" class="form-control">
+            <option value="0">{{ __('Select city') }}</option>
+        </select>
+        <button class="btn btn-success"><i class="fa-solid fa-magnifying-glass"></i> {{ __('Search') }}</button>
+    </form>
 </div>
+
 
 <script>
     const currentLocale = "{{ app()->getLocale() }}";
@@ -46,7 +41,7 @@
                     const option = ` 
                                     <option 
                                         value="${city.id}"
-                                        ${selected? 'selected' : ''}>
+                                        ${selected ? 'selected' : ''}>
                                         ${cityName}
                                     </option>`;
                     cityOptions.innerHTML += option;
@@ -54,14 +49,14 @@
             });
     }
 
-    if (country ) {
+    if (country) {
         const countryId = country.value;
-        if(countryId> 0){
+        if (countryId > 0) {
             getCountryCities(countryId);
         }
         country.addEventListener('change', function (e) {
             const countryId = this.value;
-            if(countryId>0){
+            if (countryId > 0) {
                 getCountryCities(countryId);
             }
         });

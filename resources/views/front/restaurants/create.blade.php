@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.landingpage.app')
 @section('title', 'Create your restaurant')
 @section('content')
     <section class="singin-signup">

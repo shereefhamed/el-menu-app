@@ -83,6 +83,9 @@
     "Grow Your Restaurant Business":"Grow Your Restaurant Business",
     "Explore menu style, categories, menu items, and more ...":"Explore menu style, categories, menu items, and more ...",
     "View demo":"View demo",
+    "Favorites":"Favorites",
     "Restaurant":"Restaurant",
-    "Price":"Price"
+    "Price":"Price",
+    "Menu item added to favorites": "Menu item added to favorites",
+    "Menu item removed from favorites": "Menu item removed from favorites"
 }

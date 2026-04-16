@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.landingpage.app')
 @section('title', 'Favorites')
 @section('content')
     <div class="container vh-100">
-        <h3>Favorites</h3>
+        <h3>{{ __('Favorites') }}</h3>
         <div class="">
             <table class="table">
             <thead>
@@ -16,5 +16,6 @@
                 <tbody class="favorites-items-wraper"></tbody>
             </table>
         </div>
+        <a href="#" id="return-to-reaturant" class="btn btn-outline-success">{{ __('Return to restaurant') }}</a>
     </div>
 @endsection

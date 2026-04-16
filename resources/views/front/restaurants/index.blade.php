@@ -1,8 +1,8 @@
-@extends('layouts.app')
+@extends('layouts.landingpage.app')
 @section('title', 'Resturants')
 
 @section('content')
-    <div class="container restaurant-search-content vh-100">
+    <div class="container restaurant-search-content">
         @include('front.home.partials.search')
         <div class="search-result mt-5">
             <div class="row">

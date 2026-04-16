@@ -145,7 +145,6 @@ if (headerSearchIcon) {
 const favorites = new Favorites(locale);
 
 const favoriteBtns = document.querySelectorAll('.favorite-btn');
-// const favNumber = document.querySelector('.favorites-number');
 const favNumber = document.querySelectorAll('.favorites-number');
 const favoritesItemsWraper = document.querySelector('.favorites-items-wraper');
 
@@ -170,122 +169,6 @@ if(favoritesItemsWraper){
   favorites.renderFavoritesTable(favoritesItemsWraper);
 }
 
-
-
-// const getFavorites = () => {
-//   return JSON.parse(localStorage.getItem("favorites")) || [];
-// }
-
-// const saveFavorites = (favorites) => {
-//   localStorage.setItem("favorites", JSON.stringify(favorites));
-// }
-
-// const toggleFavorite = (id) => {
-//   let favorites = getFavorites();
-
-//   if (favorites.includes(id)) {
-//     favorites = favorites.filter(item => item != id);
-//   } else {
-//     favorites.push(id);
-//   }
-
-//   saveFavorites(favorites);
-//   renderFavorites();
-// }
-
-// const renderHeaderIcon = (favorites) => {
-//   const favNumber = document.querySelector('.favorites-number');
-//   if (favNumber) {
-//     if (favorites.length > 0) {
-//       favNumber.style.display = 'block';
-//       favNumber.innerHTML = favorites.length;
-//     } else {
-//       favNumber.style.display = 'none';
-//     }
-//   }
-// }
-
-// const renderItemsFavoriteIcon = (favorites) => {
-//   if (favoriteBtns) {
-//     favoriteBtns.forEach(btn => {
-//       let id = btn.dataset.id;
-
-//       if (favorites.includes(id)) {
-//         btn.innerHTML = '<i class="fa-solid fa-heart"></i>';
-//       } else {
-//         btn.innerHTML = '<i class="fa-regular fa-heart"></i>';
-//       }
-//     });
-//   }
-// }
-
-// const renderFavorites = () => {
-//   let favorites = getFavorites();
-//   renderHeaderIcon(favorites);
-//   renderItemsFavoriteIcon(favorites);
-
-// }
-
-// const renderFavoritesTable = (favorites) => {
-//   favoritesItemsWraper.innerHTML = `
-//     <div class="spinner-border text-success text-center" role="status">
-//       <span class="visually-hidden">Loading...</span>
-//     </div>
-//   `;
-//   let output = '';
-//   fetch('/en/favorites/items?ids=' + favorites.join(','),)
-//     .then(response => response.json())
-//     .then(data => {
-//       data.forEach(item => {
-//         output +=
-//           `
-//             <tr>
-//               <td>${locale === 'en' ? item.name_en : item.name_ar}</td>
-//               <td><a href="/${locale}/restaurants/${item.restaurant.slug}">${item.restaurant.name}</a></td>
-//               <td>${item.price}</td>
-//               <td><span class="favorite-item-delete-icon" data-id="${item.id}"><i class="fa-regular fa-trash-can"></i></span></td>
-//             </tr>
-//           `;
-//       });
-//       favoritesItemsWraper.innerHTML = output;
-//     });
-// }
-
-
-// if (favoriteBtns) {
-//   favoriteBtns.forEach(btn => {
-//     btn.addEventListener('click', function (e) {
-//       e.preventDefault();
-//       const id = this.dataset.id;
-//       toggleFavorite(id)
-//     });
-//   });
-// }
-
-// renderFavorites();
-
-
-// if (favoritesItemsWraper) {
-//   const favorites = getFavorites();
-//   renderFavoritesTable(favorites);
-//   favoritesItemsWraper.addEventListener('click', function (e) {
-//     const deleteBtn = e.target.closest('.favorite-item-delete-icon');
-
-//     if (deleteBtn) {
-//       const itemId = deleteBtn.dataset.id;
-//       let favorites = getFavorites();
-//       favorites = favorites.filter(item => item != itemId);
-
-//       saveFavorites(favorites);
-
-//       const row = deleteBtn.closest('tr');
-//       if (row) {
-//         row.style.opacity = "0";
-//         setTimeout(() => row.remove(), 300);
-//       }
-//     }
-//   });
-// }
 
 
 

@@ -1,3 +1,7 @@
+
+import { Toast } from 'bootstrap';
+import __ from '../hepler';
+
 class Favorites {
     constructor(locale = 'en') {
         this.storageKey = 'favorites';
@@ -17,14 +21,25 @@ class Favorites {
 
     toggleFavorite = (id) => {
         let favorites = this.getFavorites();
-
+        let message = __('added_to_favorites');
         if (favorites.includes(id)) {
             favorites = favorites.filter(item => item != id);
+            message = __('removed_from_favorites');
         } else {
             favorites.push(id);
         }
 
         this.saveFavorites(favorites);
+
+        this.showToastMessage(message);
+    }
+
+    showToastMessage = (message) => {
+        const favoriteToast = document.getElementById('toast');
+        const toastBody = document.querySelector('#toast .toast-body');
+        toastBody.innerHTML = message;
+        const toastBootstrap = Toast.getOrCreateInstance(favoriteToast);
+        toastBootstrap.show();
     }
 
     renderHeaderIcon = (favNumberElement) => {
@@ -78,8 +93,16 @@ class Favorites {
                         `;
                 });
                 favoritesItemsWraper.innerHTML = output;
+                this.renderBackToRestaurant(data[0].restaurant.slug);
             });
         this.removeItemFromFavoritesTable(favoritesItemsWraper);
+    }
+
+    renderBackToRestaurant = (resturantSlug) => {
+        const returnToRestaurantLink = document.getElementById('return-to-reaturant');
+        if (returnToRestaurantLink) {
+            returnToRestaurantLink.href = `/${this.locale}/restaurants/${resturantSlug}`;
+        }
     }
 
     removeItemFromFavoritesTable = (favoritesItemsWraper) => {

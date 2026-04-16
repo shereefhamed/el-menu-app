@@ -1,4 +1,4 @@
-@extends('layouts.menu')
+@extends('layouts.menu.menu')
 @section('title', $menuItem->name)
 @section('content')
     <div class="container my-5">

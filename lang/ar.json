@@ -83,6 +83,9 @@
     "Grow Your Restaurant Business":"قم بتنمية أعمال مطعمك",
     "Explore menu style, categories, menu items, and more ...":"استكشف أنماط القوائم، والفئات، وأصناف القائمة، والمزيد...",
     "View demo":"شاهد الآن",
+    "Favorites":"المفضلة",
     "Restaurant":"المطعم",
-    "Price":"السعر"
+    "Price":"السعر",
+    "Menu item added to favorites": "تمت اضافة العنصر الى المفضلة",
+    "Menu item removed from favorites": "تمت ازالة العنصر من المفضلة"
 }

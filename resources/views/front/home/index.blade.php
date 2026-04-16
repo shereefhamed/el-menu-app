@@ -1,9 +1,11 @@
-@extends('layouts.app')
+@extends('layouts.landingpage.app')
 @section('title', 'El-menu')
 
 @section('content')
     @include('front.home.partials.hero')
-    @include('front.home.partials.search')
+    <div class="container">
+        @include('front.home.partials.search')
+    </div>
     @include('front.home.partials.demo')
     @include('front.home.partials.how-it-works')
     @include('front.home.partials.features')
