@@ -62,20 +62,31 @@ section {
     width: 2rem;
     height: 2rem;
     text-align: center;
-
 }
 
-.favorites-icon {
+.account-header-icon {
+    border-radius: 50%;
+    background-color: rgb(25, 135, 84);
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+    text-align: center;
+}
+
+.favorites-icon,
+.cart-icon {
     position: relative;
 }
 
-.header-icon a {
+.header-icon a,
+.account-header-icon i {
     color: white;
     font-size: 0.75rem;
     line-height: 2rem;
 }
 
-.favorites-number {
+.favorites-number,
+.cart-number {
     position: absolute;
     top: -10px;
     right: -11px;
@@ -84,9 +95,12 @@ section {
     color: white;
     background-color: red;
     border-radius: 50%;
-    display: none;
     height: 20px;
     width: 20px;
+}
+
+.favorites-number {
+    display: none;
 }
 
 .categories .nav-link {
@@ -426,6 +440,11 @@ footer {
 
 .restaurant-search-content {
     margin-top: 4rem;
+
+}
+
+.cart-page,
+.restaurant-search-content {
     min-height: 100vh;
 }
 
@@ -506,9 +525,36 @@ tr {
     color: white;
 }
 
-.ar .toast-header .btn-close{
+.ar .toast-header .btn-close {
     margin-left: calc(-.5 * 0.75rem);
     margin-right: 0.75rem;
+}
+
+.cart-item-image {
+    width: 3rem;
+}
+
+.cart-item-image img {
+    border-radius: 3px;
+}
+
+.empt-cart-wraper {
+    display: flex;
+    justify-content: center;
+    height: calc(100vh - 100px);
+    align-items: center;
+}
+
+.my-account.dropdown-toggle::after {
+    display: none;
+}
+
+.ladingpage-dropdown {
+    padding: 0;
+}
+
+#shopping-cart-update-form{
+    display: none;
 }
 
 @media (min-width: 576px) {

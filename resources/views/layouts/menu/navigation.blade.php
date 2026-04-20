@@ -10,13 +10,8 @@
                     <i class="fa-solid fa-globe"></i>
                 </a>
             </div>
-            <div class="header-icon desktop-only"><a href="#"><i class="fa-solid fa-basket-shopping"></i></a></div>
-            <div class="header-icon desktop-only favorites-icon">
-                <a href="{{ route('favorites.index') }}">
-                    <i class="fa-regular fa-heart"></i>
-                </a>
-                <span class="favorites-number"></span>
-            </div>
+            <x-header-cart-icon :desktopOnly="true"/>
+            <x-header-favorites-icon :desktopOnly="true"/>
             <div class="header-icon desktop-only"><a href="#"><i class="fa-regular fa-circle-user"></i></a></div>
             <div class="header-icon">
                 <a href="{{ route('about.index', $restaurant) }}">

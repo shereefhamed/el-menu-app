@@ -27,15 +27,23 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
-        Gate::define('isAdmin', function(User $user){
+        Gate::define('isAdmin', function (User $user) {
             return $user->isAdmin();
         });
 
-        Gate::define('isOwner', function(User $user){
+        Gate::define('isOwner', function (User $user) {
             return $user->isOwner();
         });
 
         View::composer(['front.home.index', 'front.restaurants.index'], SearchComposer::class);
-        View::composer(['front.home.index', 'front.restaurants.index', 'front.favorites.index'], NavComposer::class);
+        View::composer(
+            [
+                'front.home.index',
+                'front.restaurants.index',
+                'front.favorites.index',
+                'front.cart.index',
+            ],
+            NavComposer::class
+        );
     }
 }

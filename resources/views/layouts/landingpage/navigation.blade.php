@@ -49,8 +49,8 @@
                         </ul>
                     </li>
                 </ul>
-                <div>
-                    @auth()
+                <div class="d-flex align-items-center gap-2">
+                    <!-- @auth()
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="btn btn-danger">{{ __('Logout') }}</button>
@@ -59,7 +59,44 @@
                     @guest
                         <a href="{{ route('login') }}" class="btn btn-success">{{ __('Login') }}</a>
                         <a href="{{ route('register') }}" class="btn btn-outline-success">{{ __('Register') }}</a>
-                    @endguest
+                    @endguest -->
+                    <x-header-favorites-icon />
+                    <x-header-cart-icon/>
+                    <!-- <div class="header-icon">
+                        <a href="{{ route('cart.index') }}">
+                            <i class="fa-solid fa-basket-shopping"></i>
+                        </a>
+                        @if(session()->has('cart'))
+                            <span class="cart-number">{{ count(session('cart')) }}</span>
+                        @endif
+                    </div> -->
+                    <ul class="navbar-nav ladingpage-dropdown">
+                        <li class="nav-item dropdown">
+                            <a class="my-account dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <span class="account-header-icon">
+                                    <i class="fa-regular fa-circle-user"></i>
+                                </span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @guest
+                                    <li><a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a></li>
+                                @endguest
+                                @auth()
+                                    <li><a class="dropdown-item" href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
+                                    <form action="{{ route('logout') }}" method="POST" style="disply:none" id="logout-form">
+                                        @csrf
+                                    </form>
+                                @endauth
+                            </ul>
+                        </li>
+                       
+                    </ul>
                 </div>
             </div>
         </div>

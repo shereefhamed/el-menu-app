@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\CountryController;
 use App\Http\Controllers\Front\FavoriteController;
 use App\Http\Controllers\Front\HomeController;
@@ -20,6 +21,10 @@ Route::prefix('{locale?}')
         Route::get('/countries/{cointryId}/cities', [CountryController::class, 'cities'])->named('country.cities');
         Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
         Route::get('/favorites/items', [FavoriteController::class, 'getItems'])->name('favorites.items');
+        Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+        Route::post('/cart/add-item/{menuItem}', [CartController::class, 'addItem'])->name('cart.add');
+        Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
+        Route::delete('/cart/remove-item/{id}', [CartController::class, 'removeItem'])->name('cart.remove');
 
         // Route::get('/send-test-email', function () {
         //     // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));

@@ -148,7 +148,7 @@ const favoriteBtns = document.querySelectorAll('.favorite-btn');
 const favNumber = document.querySelectorAll('.favorites-number');
 const favoritesItemsWraper = document.querySelector('.favorites-items-wraper');
 
-if(favoriteBtns){
+if (favoriteBtns) {
   favorites.renderItemsFavoriteIcon(favoriteBtns);
   favoriteBtns.forEach(btn => {
     btn.addEventListener('click', function (e) {
@@ -161,12 +161,55 @@ if(favoriteBtns){
   });
 }
 
-if(favNumber){
+if (favNumber) {
   favorites.renderHeaderIcon(favNumber);
 }
 
-if(favoritesItemsWraper){
+if (favoritesItemsWraper) {
   favorites.renderFavoritesTable(favoritesItemsWraper);
+}
+
+const logoutLink = document.getElementById('logoutLink');
+if (logoutLink) {
+  logoutLink.addEventListener('click', function (e) {
+    e.preventDefault();
+    const logoutForm = document.getElementById('logout-form');
+    logoutForm.submit();
+  });
+}
+
+//Shopping cart
+const decreaseShoppingCartItemBtns = document.querySelectorAll('.decrease-shopping-cart-item');
+const increaseShopingCartItemBtns = document.querySelectorAll('.increase-shoping-cart-item');
+const shopingCartUpdateForm = document.getElementById('shopping-cart-update-form');
+
+if (decreaseShoppingCartItemBtns) {
+  decreaseShoppingCartItemBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      shopingCartUpdateForm.style.display = 'block';
+      const cartItemId = this.dataset.itemId;
+      const shopingcartItemInput = document.getElementById('cart-item-' + cartItemId);
+      const updateItemCart = document.getElementById('update-item-cart-form-' + cartItemId);
+      if (parseInt(shopingcartItemInput.value) > 1) {
+        shopingcartItemInput.value = parseInt(shopingcartItemInput.value) - 1;
+        updateItemCart.value = shopingcartItemInput.value;
+      }
+    });
+  });
+}
+
+if (increaseShopingCartItemBtns) {
+  increaseShopingCartItemBtns.forEach(btn => {
+    btn.addEventListener('click', function (e) {
+      shopingCartUpdateForm.style.display = 'block';
+      const cartItemId = this.dataset.itemId;
+      const shopingcartItemInput = document.getElementById('cart-item-' + cartItemId);
+      const updateItemCart = document.getElementById('update-item-cart-form-' + cartItemId);
+      shopingcartItemInput.value = parseInt(shopingcartItemInput.value) + 1;
+      updateItemCart.value = shopingcartItemInput.value;
+      
+    });
+  });
 }
 
 
