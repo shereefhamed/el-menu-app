@@ -60,8 +60,9 @@
                         <a href="{{ route('login') }}" class="btn btn-success">{{ __('Login') }}</a>
                         <a href="{{ route('register') }}" class="btn btn-outline-success">{{ __('Register') }}</a>
                     @endguest -->
-                    <x-header-favorites-icon />
                     <x-header-cart-icon/>
+                    <x-header-favorites-icon />
+                    
                     <!-- <div class="header-icon">
                         <a href="{{ route('cart.index') }}">
                             <i class="fa-solid fa-basket-shopping"></i>
