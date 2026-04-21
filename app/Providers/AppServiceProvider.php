@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Services\Paymob;
 use App\View\Composers\NavComposer;
 use App\View\Composers\SearchComposer;
+use Illuminate\Foundation\Application;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\View;
@@ -45,5 +47,17 @@ class AppServiceProvider extends ServiceProvider
             ],
             NavComposer::class
         );
+
+        // $this->app->bind(Paymob::class, function(Application $app){
+        //     return new Paymob();
+        // });
+
+        $this->app->singleton(Paymob::class, function (Application $app) {
+            return new Paymob(
+                secretKey: env('PAYMOB_SECRET_KEY'),
+                onlineCardId: env('PAYMOB_ONLINE_CARD_ID'),
+                hmacKey: env('HMAC'),
+            );
+        });
     }
 }
