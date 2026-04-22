@@ -46,6 +46,16 @@ class MenuItem extends Model
         return $this->belongsToMany(Addon::class, 'menu_item_addon');
     }
 
+    // public function cartItem()
+    // {
+    //     return $this->belongsTo(CartItem::class);
+    // }
+
+    public function cartItems()
+{
+    return $this->hasMany(CartItem::class,);
+}
+
     protected function name(): ModelAttribute
     {
         return ModelAttribute::make(

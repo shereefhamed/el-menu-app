@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Front;
 
+use App\Contracts\CartInterface;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CartRequest;
 use App\Models\MenuItem;
-use App\Services\CartService;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    public function __construct(protected CartService $cartService)
-    {
+    public function __construct(
+        protected CartInterface $cart,
+    ) {
 
     }
     public function index()
     {
-
-        $cartItems = $this->cartService->getCartMenuItems();
-        $cartTotal = $this->cartService->total();
-        $restaurant = $this->cartService->getRestaurant();
-        
+        $cartItems = $this->cart->items();
+        $cartTotal = $this->cart->total();
+        $restaurant = $this->cart->restaurant();
 
         return view(
             'front.cart.index',
@@ -32,14 +32,10 @@ class CartController extends Controller
         );
     }
 
-    public function addItem(Request $request, ?string $loclae, MenuItem $menuItem)
+    public function addItem(CartRequest $request, ?string $loclae, MenuItem $menuItem)
     {
-        $request->validate([
-            'quantity' => 'required|integer|min:1',
-        ]);
-
-
-        $result = $this->cartService->addItemToCart($menuItem, $request->all());
+        $data = $request->validated();
+        $result = $this->cart->add($menuItem, $data);
         if (!$result['status']) {
             return back()->with('status', $result['message']);
         }
@@ -50,16 +46,14 @@ class CartController extends Controller
     {
 
         $items = request()->input('cart_items');
-        $this->cartService->updateCart($items);
+        $this->cart->update($items);
 
         return back();
     }
 
     public function removeItem(string $locale, string $id)
     {
-        
-        $this->cartService->removeItemFromCart($id);
-
+        $this->cart->remove($id);
         return back()->with('success', 'Item removed');
     }
 }

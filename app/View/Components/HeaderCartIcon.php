@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Contracts\CartInterface;
 use App\Services\CartService;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -13,9 +14,14 @@ class HeaderCartIcon extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public CartService $cartService, public ?bool $desktopOnly=null)
+    public function __construct(
+        // public CartService $cartService, 
+        public CartInterface $cart,
+        public ?bool $desktopOnly=null
+        )
     {
-        $this->cartCount = $cartService->count();
+        // $this->cartCount = $cartService->count();
+        $this->cartCount = $cart->count();
     }
 
     /**

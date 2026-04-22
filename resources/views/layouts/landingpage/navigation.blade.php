@@ -85,7 +85,10 @@
                                     <li><a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                                 @endguest
                                 @auth()
-                                    <li><a class="dropdown-item" href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</a></li>
+                                    @canAny(['isOwner', 'isAdmin'])
+                                        <li><a class="dropdown-item" href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</a></li>
+                                    @endcanany
+                                    <li><a class="dropdown-item" href="#">{{ __('My account') }}</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>

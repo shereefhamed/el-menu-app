@@ -70,6 +70,11 @@ class User extends Authenticatable
         return $this->hasOne(Restaurant::class);
     }
 
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
     public function isAdmin()
     {
         // return $this->role->name === 'admin';

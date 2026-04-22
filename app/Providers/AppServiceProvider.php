@@ -2,7 +2,11 @@
 
 namespace App\Providers;
 
+use App\Contracts\CartInterface;
 use App\Models\User;
+use App\Services\Cart\CartManager;
+use App\Services\Cart\DatabaseCartService;
+use App\Services\Cart\SessionCartService;
 use App\Services\Paymob;
 use App\View\Composers\NavComposer;
 use App\View\Composers\SearchComposer;
@@ -59,5 +63,10 @@ class AppServiceProvider extends ServiceProvider
                 hmacKey: env('HMAC'),
             );
         });
+
+        $this->app->bind(
+            CartInterface::class,
+            CartManager::class,
+        );
     }
 }

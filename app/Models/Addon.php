@@ -29,6 +29,11 @@ class Addon extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function cartItems()
+    {
+        return $this->belongsToMany(CartItem::class);
+    }
+
     protected function name(): Attribute
     {
         return Attribute::make(get: fn() => $this->{'name_' . app()->getLocale()});

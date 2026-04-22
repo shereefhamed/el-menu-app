@@ -22,6 +22,11 @@ class Attribute extends Model
             ->withPivot('price');
     }
 
+    public function cartItems()
+    {
+        return $this->hasMany(CartItem::class);
+    }
+
     protected function name(): ModelAttribute
     {
         return ModelAttribute::make(
