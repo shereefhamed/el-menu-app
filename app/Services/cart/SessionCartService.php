@@ -2,8 +2,10 @@
 namespace App\Services\Cart;
 
 use App\Contracts\CartInterface;
+use App\Models\Cart;
 use App\Models\MenuItem;
 use App\Models\Restaurant;
+use App\Models\User;
 use Illuminate\Support\Collection;
 
 class SessionCartService implements CartInterface
@@ -184,5 +186,56 @@ class SessionCartService implements CartInterface
         }
 
         $this->setCart($cartItems, $restaurant->slug);
+    }
+
+    public function mergeGuestCartToUser(User $user)
+    {
+        
+        $cartItems = $this->getCartItems();
+        $restaurant = $this->restaurant();
+
+        if (empty($cartItems)) {
+            return;
+        }
+
+        $cart = Cart::firstWhere([
+            'user_id' => $user->id,
+        ]);
+
+        if(!$cart){
+            $cart =Cart::create([
+                'user_id' => $user->id,
+                'restaurant_id' => $restaurant->id,
+            ]);
+        }else {
+            $cart->cartItems()->delete();
+
+            if($cart->restaurant_id !== $restaurant->id){
+                $cart->update([
+                    'restaurant_id' => $restaurant->id,
+                ]);
+             }
+
+        }
+
+        foreach ($cartItems as $carItem) {
+                $menuItemId = $carItem['menu_item_id'];
+                $attributeId = $carItem['attribute_id'] ?? null;
+                $quantity = $carItem['quantity']?? 1;
+                $addons = $carItem['addons']?? [];
+                $notes = $carItem['notes'] ?? null;
+
+                $newItem = $cart->cartItems()->create([
+                    'menu_item_id' => $menuItemId,
+                    'attribute_id' => $attributeId,
+                    'quantity' => $quantity,
+                    'notes' => $notes,
+             
+                ]);
+
+                $newItem->addons()->attach($addons);
+        }
+
+        $this->clear();
     }
 }
