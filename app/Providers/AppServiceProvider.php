@@ -48,6 +48,8 @@ class AppServiceProvider extends ServiceProvider
                 'front.restaurants.index',
                 'front.favorites.index',
                 'front.cart.index',
+                'front.checkout.index',
+                'front.checkout.thank-you'
             ],
             NavComposer::class
         );

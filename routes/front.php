@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Front\AboutController;
 use App\Http\Controllers\Front\CartController;
+use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\CountryController;
 use App\Http\Controllers\Front\FavoriteController;
 use App\Http\Controllers\Front\HomeController;
@@ -25,6 +26,9 @@ Route::prefix('{locale?}')
         Route::post('/cart/add-item/{menuItem}', [CartController::class, 'addItem'])->name('cart.add');
         Route::post('/cart/update', [CartController::class, 'update'])->name('cart.update');
         Route::delete('/cart/remove-item/{id}', [CartController::class, 'removeItem'])->name('cart.remove');
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
+        Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
+        Route::get('/checkout/{orderId}/thank-you', [CheckoutController::class, 'thankyou'])->name('checkout.thankyou');
 
         // Route::get('/send-test-email', function () {
         //     // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));

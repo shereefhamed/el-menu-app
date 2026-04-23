@@ -553,8 +553,16 @@ tr {
     padding: 0;
 }
 
-#shopping-cart-update-form{
+#shopping-cart-update-form {
     display: none;
+}
+
+.checkout-address-section {
+    display: none;
+}
+
+.ar .list-group{
+    padding-right: 0;
 }
 
 @media (min-width: 576px) {

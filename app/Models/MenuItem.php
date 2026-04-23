@@ -52,9 +52,14 @@ class MenuItem extends Model
     // }
 
     public function cartItems()
-{
-    return $this->hasMany(CartItem::class,);
-}
+    {
+        return $this->hasMany(CartItem::class, );
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
 
     protected function name(): ModelAttribute
     {
@@ -72,7 +77,7 @@ class MenuItem extends Model
 
     public function thumbnail()
     {
-        if(Str::contains($this->image_url, 'http')){
+        if (Str::contains($this->image_url, 'http')) {
             return $this->image_url;
         }
         return Storage::url($this->image_url);
@@ -97,7 +102,7 @@ class MenuItem extends Model
         $user = Auth::user();
 
         $query->with('category');
-        
+
         $query->when(
             $filter === 'trashed',
             function (Builder $q) {
@@ -117,7 +122,7 @@ class MenuItem extends Model
 
         $query->when(
             $restaurant !== null && $restaurant !== 'all',
-            function (Builder $q) use($restaurant) {
+            function (Builder $q) use ($restaurant) {
                 $q->where('restaurant_id', $restaurant);
             }
         );
@@ -133,7 +138,7 @@ class MenuItem extends Model
 
         $query->when(
             $user->isAdmin(),
-            function(Builder $q){
+            function (Builder $q) {
                 $q->with('restaurant');
             }
         );
@@ -141,15 +146,15 @@ class MenuItem extends Model
 
     protected static function booted()
     {
-        static::creating(function(MenuItem $menuItem){
+        static::creating(function (MenuItem $menuItem) {
             $menuItem->slug = Str::slug($menuItem->name_en);
         });
 
-        static::saving(function(MenuItem $menuItem){
+        static::saving(function (MenuItem $menuItem) {
             $menuItem->slug = Str::slug($menuItem->name_en);
         });
 
-        static::deleting(function(MenuItem $menuItem){
+        static::deleting(function (MenuItem $menuItem) {
             $menuItem->addons()->sync([]);
             $menuItem->attributes()->sync([]);
         });

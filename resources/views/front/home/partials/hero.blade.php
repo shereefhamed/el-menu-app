@@ -6,7 +6,7 @@
                 <p class="mb-0">{{ __('Create Free QR Code for Restaurant Menu') }}</p>
                 <p>{{ __('Convert your menu into a QR Code with our App, and then share it with customers.') }}</p>
                 <div class="d-flex align-items-center mt-5">
-                    <a href="{{ route('register') }}" class="btn btn-success">{{ __('Register Now') }}</a>
+                    <a href="{{ route('register', ['signup-as' => 'restaurant-owner']) }}" class="btn btn-success">{{ __('Register Now') }}</a>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal">
                         <span class="hero-video-icon"><i class="fa-solid fa-play"></i></span> 
                         {{ __('Watch Video') }}

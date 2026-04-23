@@ -62,6 +62,11 @@ class Restaurant extends Model
         return $this->hasMany(Cart::class);
     }
 
+    public function rorders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
     public function getRouteKeyName()
     {
         return 'slug';

@@ -207,10 +207,67 @@ if (increaseShopingCartItemBtns) {
       const updateItemCart = document.getElementById('update-item-cart-form-' + cartItemId);
       shopingcartItemInput.value = parseInt(shopingcartItemInput.value) + 1;
       updateItemCart.value = shopingcartItemInput.value;
-      
+
     });
   });
 }
+
+//Checkout
+const orderTypeRadios = document.querySelectorAll('.order-type');
+const checkoutAddress = document.querySelector('.checkout-address-section');
+const checkoutTableNumber = document.querySelector('.checkout-table-number');
+const checkoutSubmitBtn = document.getElementById('checkout-submit-btn');
+const checkoutForm = document.getElementById('checkout-form');
+const selectedOrderType = document.querySelector('input[name="order_type"]:checked');
+
+const togglefields = (orderType) => {
+  if (orderType === 'dine_in') {
+    checkoutAddress.style.display = 'none';
+    checkoutTableNumber.style.display = 'block';
+  } else if (orderType === 'delivery') {
+    checkoutAddress.style.display = 'block';
+    checkoutTableNumber.style.display = 'none';
+  } else {
+    checkoutAddress.style.display = 'none';
+    checkoutTableNumber.style.display = 'none';
+  }
+}
+
+if (orderTypeRadios) {
+
+
+  orderTypeRadios.forEach(radio => {
+    radio.addEventListener('change', function (e) {
+
+      const orderType = this.value;
+      togglefields(orderType);
+      // if (orderType === 'dine_in') {
+      //   checkoutAddress.style.display = 'none';
+      //   checkoutTableNumber.style.display = 'block';
+      // } else if (orderType === 'delivery') {
+      //   checkoutAddress.style.display = 'block';
+      //   checkoutTableNumber.style.display = 'none';
+      // } else {
+      //   checkoutAddress.style.display = 'none';
+      //   checkoutTableNumber.style.display = 'none';
+      // }
+    })
+  });
+}
+
+if (selectedOrderType) {
+  console.log(selectedOrderType);
+  const orderType = selectedOrderType.value;
+  console.log(orderType);
+  togglefields(orderType);
+}
+
+if (checkoutSubmitBtn) {
+  checkoutSubmitBtn.addEventListener('click', function (e) {
+    checkoutForm.submit();
+  });
+}
+
 
 
 

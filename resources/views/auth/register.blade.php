@@ -12,10 +12,14 @@
                     <p class="text-center">{{ __('Create your account to get started') }}</p>
                     <div class="mb-3">
                         <label for="signup-as" class="form-label">{{ __('Signup as') }}</label>
-                        <select name="signup_as" id="signup-as" class="form-control">
+                        <select 
+                            name="signup_as" 
+                            id="signup-as" 
+                            class="form-control {{ $errors->has('signup_as') ? 'is-invalid' : '' }}">
+                            <option value="please select from">{{ __('Please select') }}</option>
                             <option 
                                 value="restaurant-owner"
-                                @selected(old('signup_as' == 'restaurant-owner'))>
+                                @selected(old('signup_as',  request()->input('signup-as')??null) == 'restaurant-owner')>
                                 {{ __('Restaurant owner') }}
                             </option>
                             <option 

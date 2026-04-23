@@ -75,6 +75,16 @@ class User extends Authenticatable
         return $this->hasOne(Cart::class);
     }
 
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function address()
+    {
+        return $this->hasOne(UserAddress::class);
+    }
+
     public function isAdmin()
     {
         // return $this->role->name === 'admin';

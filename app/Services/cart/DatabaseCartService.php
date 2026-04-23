@@ -142,7 +142,7 @@ class DatabaseCartService implements CartInterface
 
     public function clear(): void
     {
-        $this->user()?->cart?->items()->delete();
+        $this->user()?->cart?->cartItems()->delete();
     }
 
     public function restaurant(): Restaurant|null

@@ -8,7 +8,7 @@
         <span class="fw-bold">Total</span>
         <span class="fw-bold">{{ $restaurant->currency->symbol }}{{ $cartTotal }}</span>
     </div>
-    <button class="btn btn-success checkout-btn w-100 mb-3">
+    <a class="btn btn-success checkout-btn w-100 mb-3" href="{{ route('checkout.index') }}">
         {{ __('Proceed to Checkout') }}
-    </button>
+    </a>
 </x-card>
