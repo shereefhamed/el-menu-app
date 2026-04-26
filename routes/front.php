@@ -6,6 +6,7 @@ use App\Http\Controllers\Front\CheckoutController;
 use App\Http\Controllers\Front\CountryController;
 use App\Http\Controllers\Front\FavoriteController;
 use App\Http\Controllers\Front\HomeController;
+use App\Http\Controllers\Front\MyAccountController;
 use App\Http\Controllers\Front\RestaurantController;
 use App\Http\Controllers\Front\RestaurantMenuItemController;
 use App\Mail\TestMail;
@@ -29,6 +30,10 @@ Route::prefix('{locale?}')
         Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
         Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
         Route::get('/checkout/{orderId}/thank-you', [CheckoutController::class, 'thankyou'])->name('checkout.thankyou');
+        Route::get('/my-account', [MyAccountController::class, 'index'])->name('my-account.index');
+        Route::put('/my-account/update-profile', [MyAccountController::class, 'updateProfile'])->name('my-account.update-profile');
+        Route::put('my-account/update-address', [MyAccountController::class, 'updateAddress'])->name('my-account.update-address');
+   
 
         // Route::get('/send-test-email', function () {
         //     // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));

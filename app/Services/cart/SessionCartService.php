@@ -51,7 +51,7 @@ class SessionCartService implements CartInterface
         if ($restaurant && $restaurant->id !== $menuItem->restaurant->id) {
             return [
                 'status' => false,
-                'message' => 'You have items from another restaurant'
+                'message' => self::ADDTOCARTERRORMESSAGE,
             ];
         }
 

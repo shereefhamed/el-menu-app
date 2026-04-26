@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 
 interface CartInterface
 {
+    public const ADDTOCARTERRORMESSAGE = 'You have items from another restaurant!';
     public function add(MenuItem $menuItem, array $data): array;
 
     public function items(): Collection;

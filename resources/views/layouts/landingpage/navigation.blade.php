@@ -88,11 +88,11 @@
                                     @canAny(['isOwner', 'isAdmin'])
                                         <li><a class="dropdown-item" href="{{ route('dashboard.index') }}">{{ __('Dashboard') }}</a></li>
                                     @endcanany
-                                    <li><a class="dropdown-item" href="#">{{ __('My account') }}</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('my-account.index') }}">{{ __('My account') }}</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="#" id="logoutLink">Logout</a></li>
+                                    <li><a class="dropdown-item" href="#" id="logoutLink">{{ __('Logout') }}</a></li>
                                     <form action="{{ route('logout') }}" method="POST" style="disply:none" id="logout-form">
                                         @csrf
                                     </form>

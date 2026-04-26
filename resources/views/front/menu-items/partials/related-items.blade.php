@@ -1,5 +1,5 @@
 <div class="related-items mt-5">
-    <h4>Related items</h4>
+    <h4>{{ __('Related items') }}</h4>
     <div class="swiper">
         <div class="swiper-wrapper">
             @foreach ($related as $menuItem)

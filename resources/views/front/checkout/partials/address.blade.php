@@ -41,7 +41,7 @@
     </div>
     <div class="mb-3 checkout-email-section"> 
         <label for="checkout-email" class="form-label">
-            Email 
+            {{ __('Email') }} 
             </label> 
             <input 
                 type="email" 

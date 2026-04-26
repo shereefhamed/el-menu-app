@@ -5,7 +5,7 @@
         @if ($cartItems->count() == 0)
             <div class="empt-cart-wraper">
                 <div class="text-center">
-                    <h3>Your cart is currently empty!</h3>
+                    <h3>{{ __('Your cart is currently empty!') }}</h3>
                     <a href="{{ route('restaurants.index') }}" class="btn btn-success">{{ __('Start eating') }}</a>
                 </div>
 

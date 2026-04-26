@@ -31,7 +31,7 @@ class DatabaseCartService implements CartInterface
         if ($cart->restaurant_id !== $menuItem->restaurant->id) {
             return [
                 'status' => false,
-                'message' => 'You have items from another restaurant!'
+                'message' => self::ADDTOCARTERRORMESSAGE,
             ];
         }
         $addonIds = array_values($addons);
@@ -72,13 +72,20 @@ class DatabaseCartService implements CartInterface
 
     public function items(): Collection
     {
-        $cart = Cart::with([
+        // $cart = Cart::with([
+        //     'cartItems',
+        //     'cartItems.menuItem',
+        //     'cartItems.addons',
+        //     'cartItems.attribute'
+        // ])
+        //     ->firstWhere('user_id', $this->user()->id);
+
+        $cart = auth()->user()->cart()->with([
             'cartItems',
             'cartItems.menuItem',
             'cartItems.addons',
             'cartItems.attribute'
-        ])
-            ->firstWhere('user_id', $this->user()->id);
+        ])->first();
 
 
 

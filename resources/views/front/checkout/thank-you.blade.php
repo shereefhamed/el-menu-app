@@ -3,30 +3,29 @@
 @section('content')
     <section class="">
         <div class="container">
-            <h1 class="text-center">Thank you for your order!</h1>
+            <h1 class="text-center">{{ __('Thank you for your order!') }}</h1>
             <p class="text-center">
-                Your order has been placed successfully and is being processed. We've sent a confirmation email to your
-                inbox.
+                {{ __('Your order has been placed successfully and is being processed. We\'ve sent a confirmation email to your inbox.') }}
             </p>
             <div class="row mt-5">
                 <div class="col-md-8">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h3>Order Details</h3>
-                        <span class="badge text-bg-secondary">{{ $order->status }}</span>
+                        <h3>{{ __('Order Details') }}</h3>
+                        <span class="badge text-bg-secondary">{{ __($order->status) }}</span>
                     </div>
                     <x-card>
                         <div class="row">
                             <div class="col-md-4">
-                                <h6>Order ID</h6>
+                                <h5>{{ __('Order ID') }}</h5>
                                 <p>{{ $order->orderId() }}</p>
                             </div>
                             <div class="col-md-4">
-                                <h6>Order status</h6>
-                                <p>{{ $order->status }}</p>
+                                <h5>{{ __('Order status') }}</h5>
+                                <p>{{ __($order->status) }}</p>
                             </div>
                             <div class="col-md-4">
-                                <h6>Order status</h6>
-                                <p>{{ $order->status }}</p>
+                                <h5>{{ __('Order type') }}</h5>
+                                <p>{{ $order->order_type }}</p>
                             </div>
                         </div>
                         <hr>
@@ -66,27 +65,27 @@
                 </div>
                 <div class="col-md-4">
 
-                    <h3>Order Summary</h3>
+                    <h3>{{ __('Order summary') }}</h3>
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Subtotal</span>
+                            <span>{{ __('Subtotal') }}</span>
                             <strong>{{ $order->restaurant->currency->symbol }} {{ $order->subtotal }}</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Delivery fee</span>
+                            <span>{{ __('Delivery fee') }}</span>
                             <strong>{{ $order->restaurant->currency->symbol }} {{ $order->delivery_fee }}</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Service fee</span>
+                            <span>{{ __('Service fee') }}</span>
                             <strong>{{ $order->restaurant->currency->symbol }} {{ $order->service_fee }}</strong>
                         </li>
                         <li class="list-group-item d-flex justify-content-between">
-                            <span>Total</span>
+                            <span>{{ __('Total') }}</span>
                             <strong>{{ $order->restaurant->currency->symbol }} {{ $order->total }}</strong>
                         </li>
                     </ul>
                     <a class="w-100 btn btn-success btn-lg" href="{{ route('restaurants.index') }}">
-                        Explore more restaurants
+                        {{ __('Explore more restaurants') }}
                     </a>
                 </div>
             </div>

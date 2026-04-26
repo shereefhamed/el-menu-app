@@ -37,9 +37,9 @@ class CartController extends Controller
         $data = $request->validated();
         $result = $this->cart->add($menuItem, $data);
         if (!$result['status']) {
-            return back()->with('status', $result['message']);
+            return back()->with('warning', $result['message']);
         }
-        return back()->with('status', 'Added to cart');
+        return back()->with('status', 'Menu item added to cart');
     }
 
     public function update(Request $request)

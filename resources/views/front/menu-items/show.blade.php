@@ -2,21 +2,8 @@
 @section('title', $menuItem->name)
 @section('content')
     <div class="container my-5">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success" role="alert">
-                {{ session('status') }}
-            </div>
-        @endif
+       <x-errors />
+        <x-alert />
         <div class="row">
             <div class="col-md-6">
                 <img src="{{ $menuItem->thumbnail() }}" alt="" class="img-fluid">
@@ -43,8 +30,8 @@
                     @include('front.menu-items.partials.addons')
                     <h5 id="menu-item-price"></h5>
                     <div class="mb-3">
-                        <label for="notes" class="notes" class="form-label">Notes</label>
-                        <textarea name="notes" id="notes" placeholder="Add notes" class="form-control"></textarea>
+                        <label for="notes" class="notes" class="form-label">{{ __('Notes') }}</label>
+                        <textarea name="notes" id="notes" placeholder="{{ __('Add your notes') }}" class="form-control"></textarea>
                     </div>
                     <div class="add-to-cart-group ">
                         <div class="input-group">

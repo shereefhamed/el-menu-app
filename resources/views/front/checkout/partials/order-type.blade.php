@@ -9,7 +9,7 @@
             class="form-check-input order-type" 
             required=""
             @checked(old('order_type') === 'dine_in')> 
-            <label class="form-check-label" for="credit">Dine in</label> 
+            <label class="form-check-label" for="credit">{{ __('Dine in') }}</label> 
         </div>
     <div class="form-check"> 
         <input 
@@ -20,7 +20,7 @@
             class="form-check-input order-type" 
             required=""
             @checked(old('order_type') === 'delivery')>
-        <label class="form-check-label" for="debit">Delivery</label> 
+        <label class="form-check-label" for="debit">{{ __('Delivery') }}</label> 
     </div>
     <div class="form-check"> 
         <input 
@@ -31,6 +31,6 @@
             class="form-check-input order-type" 
             required=""
             @checked(old('order_type') === 'pickup')>
-        <label class="form-check-label" for="paypal">Pickup</label> 
+        <label class="form-check-label" for="paypal">{{ __('Pickup') }}</label> 
     </div>
 </div>

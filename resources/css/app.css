@@ -8,6 +8,7 @@
 :root {
     --primary-color: rgb(25, 135, 84);
     --seconary-color: #353535;
+    --body-color : #212529;
 }
 
 body.ar {
@@ -58,7 +59,7 @@ section {
 
 .header-icon {
     border-radius: 50%;
-    background-color: rgb(25, 135, 84);
+    background-color: var(--primary-color);
     width: 2rem;
     height: 2rem;
     text-align: center;
@@ -66,7 +67,7 @@ section {
 
 .account-header-icon {
     border-radius: 50%;
-    background-color: rgb(25, 135, 84);
+    background-color: var(--primary-color);
     width: 2rem;
     height: 2rem;
     display: inline-block;
@@ -104,16 +105,16 @@ section {
 }
 
 .categories .nav-link {
-    color: rgb(25, 135, 84);
+    color: var(--primary-color);
     white-space: nowrap;
 }
 
 .categories .nav-pills .nav-link.active {
-    background-color: rgb(25, 135, 84);
+    background-color: var(--primary-color);
 }
 
 a {
-    color: #212529;
+    color: var(--body-color);
     text-decoration: none;
 }
 
@@ -341,7 +342,7 @@ footer {
 }
 
 .hero-image img {
-    width: 80%;
+    width: 70%;
 }
 
 .hero-video-icon {
@@ -561,8 +562,27 @@ tr {
     display: none;
 }
 
-.ar .list-group{
+.ar .list-group {
     padding-right: 0;
+}
+
+
+.my-account-nav {
+    flex-direction: row;
+}
+
+.my-account-nav .nav-link.active {
+    background-color: var(--primary-color) !important;
+}
+
+.my-account-nav .nav-link{
+    color: var(--body-color);
+}
+
+
+.ar .alert-dismissible .btn-close {
+    left: 0;
+    right: unset;
 }
 
 @media (min-width: 576px) {
@@ -601,6 +621,20 @@ tr {
 
     .menu-item-card .card-body {
         height: 12rem;
+    }
+
+    .my-account {
+        display: flex;
+        align-items: start;
+    }
+
+    .my-account-nav {
+        flex-basis: 25%;
+        flex-direction: column;
+    }
+
+    .my-account-content-body {
+        flex-basis: 75%;
     }
 }
 

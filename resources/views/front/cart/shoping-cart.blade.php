@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-center">
-    <h4>Shopping cart</h4>
+    <h4>{{ __('Shopping cart') }}</h4>
     <span>{{ $cartItems->count() }} {{ __('items') }}</span>
 </div>
 @foreach ($cartItems as $cartItem)
