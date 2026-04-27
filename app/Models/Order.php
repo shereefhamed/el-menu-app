@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+use App\Notifications\NewOrderForOwner;
+use App\Notifications\OrderCancelled;
+use App\Notifications\OrderPlaced;
+use App\Notifications\OrderStatusUpdated;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -111,5 +115,26 @@ class Order extends Model
                 $q->with('restaurant');
             }
         );
+    }
+
+    protected static function booted()
+    {
+        static::created(function (Order $order) {
+            $customer = $order->user;
+            $owner = $order->restaurant->user;
+
+            $customer->notify(new OrderPlaced($order));
+            $owner->notify(new NewOrderForOwner($order));
+        });
+
+        static::updated(function(Order $order){
+            $customer = $order->user;
+            $owner = $order->restaurant->user;
+            if($order->status === 'cancelled'){
+                $owner->notify(new OrderCancelled($order));
+            }else{
+                $customer->notify(new OrderStatusUpdated($order));
+            }
+        });
     }
 }

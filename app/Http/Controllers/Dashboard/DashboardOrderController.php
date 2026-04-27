@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Restaurant;
 use App\Models\User;
+use App\Notifications\OrderStatusUpdated;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -91,6 +92,8 @@ class DashboardOrderController extends Controller
         ]);
         $order->status = $data['status'];
         $order->save();
+        // $customer = $order->user;
+        // $customer->notify(new OrderStatusUpdated($order));
         return back()->with('status', 'Order status updated');
     }
 

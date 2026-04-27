@@ -11,7 +11,10 @@ use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\RestaurantController;
 use App\Http\Controllers\Front\RestaurantMenuItemController;
 use App\Mail\TestMail;
+use App\Models\Order;
 use App\Models\Restaurant;
+use App\Notifications\NewOrderForOwner;
+use App\Notifications\OrderPlaced;
 
 Route::prefix('{locale?}')
     ->middleware('set.locale')
@@ -37,12 +40,17 @@ Route::prefix('{locale?}')
         Route::resource('orders', OrderController::class)->only(['show', 'update']);
    
 
-        // Route::get('/send-test-email', function () {
-        //     // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));
-        //     $restautant = Restaurant::onlyTrashed()->find(3);
-        //     Mail::to('test@test.com')->send(new TestMail($restautant));
-        //     // Mail::to('test@test.com')->queue(new TestMail($restautant));
-        // });
+        Route::get('/send-test-email', function () {
+            // dd(public_path('images/download.jpg'), storage_path('app/public/logos/0NRXlIvwKV0TAEWuVJFDFEn2W2gHhiJ0ZLOD9wFb.png'));
+            // $restautant = Restaurant::onlyTrashed()->find(3);
+            // Mail::to('test@test.com')->send(new TestMail($restautant));
+            // Mail::to('test@test.com')->queue(new TestMail($restautant));
+            $order = Order::find(7);
+            $customer = $order->user;
+            $owner = $order->restaurant->user;
+            $customer->notify(new OrderPlaced($order));
+            $owner->notify(new NewOrderForOwner($order));
+        });
 
     });
 // Route::resource('restaurants', RestaurantController::class)->only(['index', 'show']);

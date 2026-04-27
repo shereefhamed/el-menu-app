@@ -15,7 +15,7 @@ class MyAccountController extends Controller
     public function index()
     {
         $currentUser = auth()->user();
-        $orders = $currentUser->orders()->with(['restaurant', 'user'])->orderBy('created_at')->get();
+        $orders = $currentUser->orders()->with(['restaurant', 'user'])->orderBy('created_at', 'desc')->get();
         $address = $currentUser->address;
         return view(
             'front.my-account.index',

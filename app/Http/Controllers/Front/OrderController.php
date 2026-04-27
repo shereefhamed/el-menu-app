@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Notifications\OrderCancelled;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -64,6 +65,8 @@ class OrderController extends Controller
     {
         $order->status = 'cancelled';
         $order->save();
+        // $owner = $order->restaurant->user;
+        // $owner->notify(new OrderCancelled($order));
         return back()->with('warning', 'Order cancelled');
     }
 

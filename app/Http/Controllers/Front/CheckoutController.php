@@ -6,6 +6,9 @@ use App\Contracts\CartInterface;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CheckoutRequest;
 use App\Models\Order;
+use App\Notifications\NewOrderForOwner;
+use App\Notifications\OrderPlaced;
+use Illuminate\Support\Facades\Notification;
 
 class CheckoutController extends Controller
 {
@@ -41,6 +44,7 @@ class CheckoutController extends Controller
         $serviceFee = 0;
         $deliveryFee = 0;
         $restaurant = $this->cart->restaurant();
+        $owner = $restaurant->user;
         $data['restaurant_id'] = $restaurant->id;
         $data['delivery_fee'] = $deliveryFee;
         $data['service_fee'] = $serviceFee;
@@ -64,7 +68,6 @@ class CheckoutController extends Controller
             $quantity = $cartItem['quantity'] ?? 1;
             $menuItemId = $cartItem['menuItem']->id;
             $itemName = $cartItem['menuItem']->name;
-            $basePrice = $cartItem['unit_price'];
             $unitPrice = $cartItem['unit_price'];
             $total = $cartItem['total'];
 
@@ -96,6 +99,10 @@ class CheckoutController extends Controller
                 'notes' => $notes
             ]);
         }
+
+        // Notification::send($currentUser, new OrderPlaced($order));
+        // $currentUser->notify(new OrderPlaced($order));
+        // $owner->notify(new NewOrderForOwner($order));
 
         $this->cart->clear();
         return redirect()->route('checkout.thankyou', ['orderId' => $order->orderId()]);
