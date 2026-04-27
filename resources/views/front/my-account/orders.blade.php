@@ -3,6 +3,7 @@
         <tr>
             <th>Order ID</th>
             <th>Date</th>
+            <th>Restaurant</th>
             <th>Status</th>
             <th>{{ __('Total') }}</th>
         </tr>
@@ -10,8 +11,9 @@
     <tbody>
         @foreach ($orders as $order)
             <tr>
-                <td>{{ $order->orderId() }}</td>
+                <td><a href="{{ route('orders.show', ['order' => $order]) }}">{{ $order->orderId() }}</a></td>
                 <td>{{ $order->created_at->format('d M Y') }}</td>
+                <td>{{ $order->restaurant->name }}</td>
                 <td>{{ $order->status }}</td>
                 <td>{{ $order->total }}</td>
             </tr>

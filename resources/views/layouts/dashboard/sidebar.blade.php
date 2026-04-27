@@ -3,7 +3,7 @@
     <!--begin::Sidebar Brand-->
     <div class="sidebar-brand">
         <!--begin::Brand Link-->
-        <a href="./index.html" class="brand-link">
+        <a href="{{ route('home') }}" class="brand-link">
             <!--begin::Brand Image-->
             <img src="{{ asset('images/logo.png') }}" alt="El-menu" class="brand-image opacity-75 shadow" />
             <!--end::Brand Image-->
@@ -46,6 +46,13 @@
                         class="nav-link {{ request()->routeIs('dashboard.addons.index') ? 'active' : '' }}">
                         <i class="nav-icon bi bi-bag-plus-fill"></i>
                         <p>Addons</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dashboard.orders.index') }}"
+                        class="nav-link {{ request()->routeIs('dashboard.orders.index') ? 'active' : '' }}">
+                        <i class="nav-icon bi bi-basket"></i>
+                        <p>Orders</p>
                     </a>
                 </li>
                 @can('isAdmin')

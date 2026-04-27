@@ -18205,6 +18205,10 @@ a {
   align-items: center;
 }
 
+.dashboard-fitler form .form-label {
+  margin-bottom: 0;
+}
+
 .qr-code {
   text-align: center;
 }

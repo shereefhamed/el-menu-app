@@ -7,6 +7,7 @@ use App\Http\Controllers\Front\CountryController;
 use App\Http\Controllers\Front\FavoriteController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Front\MyAccountController;
+use App\Http\Controllers\Front\OrderController;
 use App\Http\Controllers\Front\RestaurantController;
 use App\Http\Controllers\Front\RestaurantMenuItemController;
 use App\Mail\TestMail;
@@ -33,6 +34,7 @@ Route::prefix('{locale?}')
         Route::get('/my-account', [MyAccountController::class, 'index'])->name('my-account.index');
         Route::put('/my-account/update-profile', [MyAccountController::class, 'updateProfile'])->name('my-account.update-profile');
         Route::put('my-account/update-address', [MyAccountController::class, 'updateAddress'])->name('my-account.update-address');
+        Route::resource('orders', OrderController::class)->only(['show', 'update']);
    
 
         // Route::get('/send-test-email', function () {

@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\DashboardCityController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardCountryController;
 use App\Http\Controllers\Dashboard\DashboardInfoController;
+use App\Http\Controllers\Dashboard\DashboardOrderController;
 use App\Http\Controllers\Dashboard\DashboardPaymentController;
 use App\Http\Controllers\Dashboard\DashboardPlanController;
 use App\Http\Controllers\Dashboard\DashboardQRController;
@@ -127,5 +128,8 @@ Route::prefix('/dashboard')
             ->name('dashboard.upgrade-subscription.payment-success');
         Route::get('/upgrade-subscription/{planId}', [DashboardUpgradeSubscription::class, 'subscripe'])
             ->name('dashboard.upgrade-subscription.subscripe');
+        
+        //Orders
+        Route::resource('orders', DashboardOrderController::class)->names('dashboard.orders')->only(['index', 'edit', 'update']);
         
     });

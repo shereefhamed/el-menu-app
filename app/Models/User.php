@@ -98,7 +98,7 @@ class User extends Authenticatable
 
     public function isCustomer()
     {
-        return $this->role()->name === 'cusotmer';
+        return $this->role()->name === 'customer';
     }
 
     public function role()
@@ -136,6 +136,14 @@ class User extends Authenticatable
         $ownerRole = Role::owner()->first();
         $query->whereHas('roles', function (Builder $query) use ($ownerRole) {
             $query->where('roles.id', $ownerRole->id);
+        });
+    }
+
+    public function scopeCustomers(Builder $query)
+    {
+        $customerRole = Role::customer()->first();
+        $query->whereHas('roles', function (Builder $query) use ($customerRole) {
+            $query->where('roles.id', $customerRole->id);
         });
     }
 
