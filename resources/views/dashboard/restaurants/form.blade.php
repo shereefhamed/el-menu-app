@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-md-8">
             @include('dashboard.restaurants.partials.main-info')
+            @include('dashboard.restaurants.partials.fees')
         </div>
         <div class="col-md-4">
             @include('dashboard.restaurants.partials.logo')

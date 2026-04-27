@@ -28,6 +28,8 @@ class RestaurantRequest extends FormRequest
             'user_id' => ['required', Rule::exists('users', 'id')],
             'logo' => ['nullable' ,'image', 'max:1024', 'mimes:png,jpg,jpeg'],
             'currency_id' => ['required', Rule::exists('currencies', 'id')],
+            'delivery_fee' => ['numeric'],
+            'service_fee' => ['numeric'],
         ];
     }
 }

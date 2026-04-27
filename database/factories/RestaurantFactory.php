@@ -18,6 +18,8 @@ class RestaurantFactory extends Factory
     {
         return [
             'name' => fake()->words(2, true),
+            'delivery_fee' => fake()->randomFloat(nbMaxDecimals:2, min:1, max:200),
+            'service_fee' => fake()->randomFloat(nbMaxDecimals:2, min:1, max:200),
         ];
     }
 }

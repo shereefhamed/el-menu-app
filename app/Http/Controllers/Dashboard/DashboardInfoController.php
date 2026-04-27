@@ -40,6 +40,8 @@ class DashboardInfoController extends Controller
             'restaurant_type_id' => ['required', 'exists:restaurant_types,id'],
             'logo' => ['image', 'max:1024', 'mimes:png,jpg,jpeg'],
             'currency_id' => ['required', Rule::exists('currencies', 'id')],
+            'delivery_fee' => ['numeric'],
+            'service_fee' => ['numeric'],
         ]);
         $restaurant->fill($data);
         $restaurant->save();

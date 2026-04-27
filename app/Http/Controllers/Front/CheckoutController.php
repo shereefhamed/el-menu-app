@@ -8,6 +8,7 @@ use App\Http\Requests\CheckoutRequest;
 use App\Models\Order;
 use App\Notifications\NewOrderForOwner;
 use App\Notifications\OrderPlaced;
+use App\Services\OrderPricingService;
 use Illuminate\Support\Facades\Notification;
 
 class CheckoutController extends Controller
@@ -41,15 +42,23 @@ class CheckoutController extends Controller
         }
         $currentUser = auth()->user();
         $cartTotal = $this->cart->total();
-        $serviceFee = 0;
-        $deliveryFee = 0;
         $restaurant = $this->cart->restaurant();
-        $owner = $restaurant->user;
+
+        // $serviceFee = $restaurant->service_fee ?? 0;
+        // $deliveryFee = $restaurant->delivery_fee ?? 0;
+
         $data['restaurant_id'] = $restaurant->id;
-        $data['delivery_fee'] = $deliveryFee;
-        $data['service_fee'] = $serviceFee;
+        // $data['delivery_fee'] = $deliveryFee;
+        // $data['service_fee'] = $serviceFee;
+        // $data['subtotal'] = $cartTotal;
+        // $data['total'] = $cartTotal + $serviceFee + $deliveryFee;
+
+        $pricingService = new OrderPricingService($restaurant);
+        $pricing = $pricingService->calculate($data['order_type'], $cartTotal);
+        $data['delivery_fee'] = $pricing['deliveryFee'];
+        $data['service_fee'] = $pricing['serviceFee'];
         $data['subtotal'] = $cartTotal;
-        $data['total'] = $cartTotal + $serviceFee + $deliveryFee;
+        $data['total'] = $pricing['total'];
 
         $order = $currentUser->orders()->create($data);
 
@@ -100,6 +109,7 @@ class CheckoutController extends Controller
             ]);
         }
 
+        // $owner = $restaurant->user;
         // Notification::send($currentUser, new OrderPlaced($order));
         // $currentUser->notify(new OrderPlaced($order));
         // $owner->notify(new NewOrderForOwner($order));

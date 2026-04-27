@@ -8,6 +8,7 @@
         <div class="row">
             <div class="col-md-8">
                 @include('dashboard.info.partials.main-info')
+                @include('dashboard.info.partials.fees')
                 <div class="d-flex gap-1">
                     <button class="btn btn-dark" type="submit">Save</button>
                     <a href="{{ route('restaurants.show', ['restaurant' => $restaurant, 'locale' => 'en']) }}"

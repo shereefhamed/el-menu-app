@@ -19,6 +19,8 @@ class Restaurant extends Model
         'logo',
         'currency_id',
         'user_id',
+        'delivery_fee',
+        'service_fee',
     ];
 
     public function user()

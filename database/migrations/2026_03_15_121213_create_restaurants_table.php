@@ -18,6 +18,8 @@ return new class extends Migration {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('restaurant_type_id')->nullable();
             $table->unsignedBigInteger('currency_id')->nullable();
+            $table->decimal('delivery_fee')->default(0);
+            $table->decimal('service_fee')->default(0);
 
             $table->foreign('restaurant_type_id')
                 ->references('id')
