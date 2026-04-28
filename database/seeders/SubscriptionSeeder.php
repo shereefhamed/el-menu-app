@@ -21,7 +21,7 @@ class SubscriptionSeeder extends Seeder
                 'user_id' => $payment->user->id,
                 'plan_id' => $payment->plan->id,
                 'start_at' => $payment->created_at,
-                'end_at' => $payment->created_at->addMonth(),
+                'end_at' => $payment->created_at->addYears(10),
             ]);
         });
     }

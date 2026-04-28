@@ -40,8 +40,6 @@ class DatabaseSeeder extends Seeder
             BrancheSeeder::class,
             AddonSeeder::class,
             MenuItemAddonSeeder::class,
-            //RestaurantCitySeeder::class,
-            
         ]);
     }
 }

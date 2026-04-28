@@ -15,20 +15,41 @@ class MenuItemSeeder extends Seeder
      */
     public function run(): void
     {
-        // $categories = Category::all();
+        // $restaurants = Restaurant::with('categories')->get();
 
-        // $categories->each(function(Category $categorie){
-        //     MenuItem::factory()->count(10)->create([]);
+        // $restaurants->each(function (Restaurant $restaurant) {
+        //     $restaurant->categories->each(function (Category $category) use ($restaurant) {
+        //         MenuItem::factory()->count(10)->create([
+        //             'restaurant_id' => $restaurant->id,
+        //             'category_id' => $category->id,
+        //         ]);
+        //     });
         // });
+
+        $menuItems = [
+            ['name_en' => 'Beef Pasta', 'name_ar' => 'مركونة باللحم'],
+            ['name_en' => 'Seafood Pasta', 'name_ar' => 'معكرونة بالمأكولات البحرية'],
+            ['name_en' => 'Classic Beef Burger', 'name_ar' => 'برجر لحم بقري كلاسيكي'],
+            ['name_en' => 'Grilled Chicken', 'name_ar' => 'قراخ مشوية'],
+            ['name_en' => 'Lemonade', 'name_ar' => 'عصير لمون'],
+            ['name_en' => 'Caffe Latte', 'name_ar' => 'حليب بالقهوة'],
+            ['name_en' => 'Fresh Juice', 'name_ar' => 'عصير طازج'],
+            ['name_en' => 'Lentil Soup', 'name_ar' => 'شوربة عدس'],
+            ['name_en' => 'Salad', 'name_ar' => 'سلطة'],
+        ];
 
         $restaurants = Restaurant::with('categories')->get();
 
-        $restaurants->each(function (Restaurant $restaurant) {
-            $restaurant->categories->each(function (Category $category) use ($restaurant) {
-                MenuItem::factory()->count(10)->create([
-                    'restaurant_id' => $restaurant->id,
-                    'category_id' => $category->id,
-                ]);
+        $restaurants->each(function (Restaurant $restaurant) use ($menuItems) {
+            $restaurant->categories->each(function (Category $category) use ($restaurant, $menuItems) {
+                foreach ($menuItems as $menuItem) {
+                    MenuItem::factory()->create([
+                        'name_en' => $menuItem['name_en'],
+                        'name_ar' => $menuItem['name_ar'],
+                        'restaurant_id' => $restaurant->id,
+                        'category_id' => $category->id,
+                    ]);
+                }
             });
         });
     }

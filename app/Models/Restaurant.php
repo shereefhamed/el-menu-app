@@ -78,20 +78,29 @@ class Restaurant extends Model
     {
 
         $builder->with('categories.menuItems')
+            ->where('name', '<>', 'demo')
             ->whereRelation('user.subscription', 'end_at', '>=', now());
 
     }
 
     public function scopeSubscripedRestaturant(Builder $builder, string $slug)
     {
+        if ($slug === 'demo') {
+            $builder->where('name', $slug);
+        } else {
+            $builder->subscripedRestaturants()
+                ->where('slug', $slug);
+        }
+    }
 
-        $builder->subscripedRestaturants()
-            ->where('slug', $slug);
+    public function scopeDemoRestaurant(Builder $query)
+    {
+        $query->where('name', 'demo');
     }
 
     public function logo()
     {
-        if(!$this->logo){
+        if (!$this->logo) {
             return 'https://placehold.net/400x400.png';
         }
         return Storage::url($this->logo);
@@ -135,10 +144,10 @@ class Restaurant extends Model
         );
         $query->when(
             $country,
-            function($q) use($country){
+            function ($q) use ($country) {
                 $q->whereHas(
                     'branches.city',
-                    function($q) use($country){
+                    function ($q) use ($country) {
                         $q->where('country_id', $country);
                     }
                 );
@@ -149,7 +158,7 @@ class Restaurant extends Model
             function ($q) use ($city) {
                 $q->whereHas(
                     'branches',
-                    function($q) use($city){
+                    function ($q) use ($city) {
                         $q->where('city_id', $city);
                     }
                 );

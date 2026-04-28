@@ -20,6 +20,12 @@
     <!--end-of-google-fonts-->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>@yield('title')</title>
+    <style>
+        html,
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
 <body class="{{ app()->getLocale() }}">

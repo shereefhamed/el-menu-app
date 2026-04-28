@@ -13,6 +13,15 @@ class CurrencySeeder extends Seeder
      */
     public function run(): void
     {
-        Currency::factory()->count(10)->create();
+        // Currency::factory()->count(10)->create();
+        $currencies = [
+            'EGP',
+            'USD',
+            'SAR',
+            'AED '
+        ];
+        foreach($currencies as $currency){
+            Currency::create(['symbol' => $currency]);
+        }
     }
 }

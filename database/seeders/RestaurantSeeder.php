@@ -18,7 +18,7 @@ class RestaurantSeeder extends Seeder
     {
         $owners = User::whereHas(
             'roles',
-            function($query){
+            function ($query) {
                 $query->where('name', 'owner');
             }
         );
@@ -26,10 +26,19 @@ class RestaurantSeeder extends Seeder
         $currencies = Currency::all();
         $restaurantTypes = RestaurantType::all();
 
-        $owners->each(function(User $owner) use($currencies, $restaurantTypes){
+        $owners->each(function (User $owner) use ($currencies, $restaurantTypes) {
             $resturantType = $restaurantTypes->random();
             $currency = $currencies->random();
+            // if ($owner->email == 'demo@test.com') {
+            //     Restaurant::factory()->create([
+            //         'name' => 'demo',
+            //         'user_id' => $owner->id,
+            //         'restaurant_type_id' => $resturantType->id,
+            //         'currency_id' => $currency->id,
+            //     ]);
+            // }
             Restaurant::factory()->create([
+                'name' => $owner->name,
                 'user_id' => $owner->id,
                 'restaurant_type_id' => $resturantType->id,
                 'currency_id' => $currency->id,

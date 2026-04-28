@@ -147,7 +147,17 @@ class MenuItem extends Model
     protected static function booted()
     {
         static::creating(function (MenuItem $menuItem) {
-            $menuItem->slug = Str::slug($menuItem->name_en);
+            // $menuItem->slug = Str::slug($menuItem->name_en);
+            $baseSlug = Str::slug($menuItem->name_en);
+            $slug = $baseSlug;
+            $count = 1;
+
+            while (self::where('slug', $slug)->exists()) {
+                $slug = $baseSlug . '-' . $count;
+                $count++;
+            }
+
+            $menuItem->slug = $slug;
         });
 
         static::saving(function (MenuItem $menuItem) {
