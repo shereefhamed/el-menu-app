@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Contracts\CartInterface;
 use App\Models\User;
 use App\Services\Cart\CartManager;
-use App\Services\Cart\DatabaseCartService;
-use App\Services\Cart\SessionCartService;
 use App\Services\Paymob;
 use App\View\Composers\NavComposer;
 use App\View\Composers\SearchComposer;
