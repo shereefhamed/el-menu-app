@@ -42,7 +42,7 @@ class PlanSeeder extends Seeder
                 ]
             ],
             [
-                'name' => 'pro',
+                'name' => 'enterprise',
                 'price' => 200,
                 'options' => [
                     "create_qr_code" => "1", 
@@ -56,6 +56,7 @@ class PlanSeeder extends Seeder
                 'name_en' => $plan['name'],
                 'name_ar' => $plan['name'],
                 'options' => $plan['options'],
+                'price' => $plan['price'],
             ]);
         }
 
